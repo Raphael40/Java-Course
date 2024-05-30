@@ -9,14 +9,14 @@ Learn Java and Spring Boot by taking this free interactive course. Each module h
 
 ## Curriculum
 
-| Modules                    | Contents                                       |
-| -------------------------- | ---------------------------------------------- |
-| [Intro](./intro/README.MD) | What is Java?                                  |
-| [Setup](./setup/README.MD) | Install Java, Java Development Kit && Intellij |
-| Java Fundamentals          | Syntax, Operators, Conditionals                |
-| Advanced Fundamentals      | Loops, Data Structures                         |
-| Project - build X          | Walk along project                             |
-| Intro to Spring Boot       | What is Spring Boot?                           |
+| Modules                                            | Contents                                       |
+| -------------------------------------------------- | ---------------------------------------------- |
+| [Intro](./intro/README.md)                         | What is Java?                                  |
+| [Setup](./setup/README.md)                         | Install Java, Java Development Kit && Intellij |
+| [Java Fundamentals](./java-fundamentals/README.md) | Syntax, Operators, Conditionals                |
+| Advanced Fundamentals                              | Loops, Data Structures                         |
+| Project - build X                                  | Walk along project                             |
+| Intro to Spring Boot                               | What is Spring Boot?                           |
 
 ## Assessments
 
