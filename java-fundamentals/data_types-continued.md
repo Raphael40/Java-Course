@@ -58,4 +58,44 @@ String backslash = "this is a backslash - \\"
 >> "this is a backslash - \"
 ```
 
-## Arrays
+## Arrays and ArrayLists
+
+`Array's` and `ArrayLists` are used to store multiple values of a single data type in an indexed list. It is indexed such that the first item of the `Array` has the numerical value of `0` and it counts up from there. The key difference between the two is that `Array's` are fixed in size while `ArrayList's` are dynamic and change in size.
+
+To initialize a new `Array` you specify the data type of the contents and add square brackets. There are two ways of doing it:
+
+1. Use curly brackets
+
+```
+String[] workdays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+// Fixed at length 5 because it was initialized with 5 items
+
+// You can access the a value by it's index
+workdays[0]
+>> "Monday"
+
+workdays[3]
+>> "Thursday"
+```
+
+2. Using the 'new' keyword requires you to specify the number of items in advance
+
+```
+int[] numbersArray = new int[3];
+
+// Assign the values
+marks[0] = 10;
+marks[1] = 40;
+marks[2] = 90;
+
+```
+
+Replace a value like this:
+
+```
+String[] goodLanguages = {"Python", "JavaScript", "Swift"}
+goodLanguages[1] = "Java"
+goodlanguages >> {"Python", "Java", "Swift"}
+```
+
+`ArrayLists` are different as their size can be changed and they have to be imported.
