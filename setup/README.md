@@ -42,9 +42,9 @@ java yourFile.java
 
 Or run your code in IntelliJ by selecting the green arrow, printing the output in the IntelliJ tool bar.
 
-## In the next step we are going to make some files and look at the basic syntax of Java
+## Next is the java-fundamental module which will teach the basic syntax of Java
 
-[next](../java-fundamentals/README.MD)
+[next](../java-fundamentals/variables-data_types-operators.md)
 
 ---
 

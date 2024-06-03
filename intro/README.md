@@ -6,7 +6,7 @@ Java is a good choice for beginners because not only is it relatively easy to le
 
 Before we can use it we first need to set up our device and install the Java Virtual Machine so we can run Java o our devices.
 
-[next](../setup/README.MD)
+[next](../setup/README.md)
 
 ## Sources
 

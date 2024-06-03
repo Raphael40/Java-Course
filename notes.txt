@@ -1,3 +1,5 @@
 Java-fundamentals - Said I would come back to private and protected classes later
 Java-fundamentals - Said I would come back to static and void later
 Java-F - add explanation for the out directory
+
+Test semi colons

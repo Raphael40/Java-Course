@@ -1,8 +1,8 @@
-# Java fundmentals
+# Java fundamentals - classes
 
-In this module we're going to look at the fundemental syntax of Java including classes, operators, and conditionals.
+In this module we're going to look at the fundementals of Java including classes and conditionals.
 
-To follow along you can clone this repo which containers starter code and the finished version:
+To follow along you will need to clone this repo which contains starter code and a completed repo:
 https://github.com/Raphael40/Java-Course-Support-Repo
 
 Once cloned you can open the Java-Course-Support-Repo directory in InteliJ.
@@ -111,3 +111,5 @@ public class FirstClass {
 ```
 
 </details>
+
+Next we're going to print
