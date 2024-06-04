@@ -32,7 +32,7 @@ Next we want to install IntelliJ
 
 IntelliJ is an integrated development environment like Visual Studio Code but designed spcifially for Java development. Once you have installed it you can specify the location of the JDK you have downloaded and configure Intellij to run your Java code from inside InteliJ.
 
-Download and install the free version of IntelliJ from here: [https://www.jetbrains.com/idea/download/?section=windows](https://www.jetbrains.com/idea/download/?section=windows)
+Download and install the free version of IntelliJ from here: [https://www.jetbrains.com/idea/download/?section=windows](https://www.jetbrains.com/idea/download/?section=windows) (You may need to scroll down the page for the free, open source version).
 
 You now have two ways to run your Java files. Directly in the terminal with the command:
 
@@ -44,7 +44,7 @@ Or run your code in IntelliJ by selecting the green arrow, printing the output i
 
 ## Next is the java-fundamental module which will teach the basic syntax of Java
 
-[next](../java-fundamentals/variables-data_types-operators.md)
+[next](../java-fundamentals/01_classes.md)
 
 ---
 

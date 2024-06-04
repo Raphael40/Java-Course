@@ -1,10 +1,35 @@
-# Java fundamentals - advanced data types
+# Java fundamentals - advanced data Types
 
-In this section we'll cover the following non-primitive data types: Strings, Arrays, Objects. Other non-primitive data types include Classes which are covered in the next section, Interfaces, and Enumerations which we look at later in the course.
+In this section we'll cover the following non-primitive data types: Strings, Arrays, Hashes. The latter two can also be called data structures.
 
 ## Strings
 
-We briefly touched on these in the previous section but `Strings` are essentially objects of the `String` class represented by a collection of characters surrounded by double quotes. Because it is a class it also has methods which can be called upon it for a variety of results.
+**Strings** are essentially objects of the `String` class which are represented by a collection of characters surrounded by double quotes. Because a `String` is a class it also has methods which can be called upon it for a variety of results.
+
+Make a new class called DataStructures.
+
+<details>
+<summary>With the terminal</summary>
+
+To do this in the terminal run the command:
+
+```
+cd exercises
+touch DataStructures.java
+```
+
+Then add the class declaration:
+
+```
+package exercises;
+
+public class DataStructures {
+
+}
+
+```
+
+</details>
 
 ```
 String cat = "caspian";
@@ -71,10 +96,10 @@ String[] workdays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 // Fixed at length 5 because it was initialized with 5 items
 
 // You can access the a value by it's index
-workdays[0]
+workdays[0];
 >> "Monday"
 
-workdays[3]
+workdays[3];
 >> "Thursday"
 ```
 
@@ -93,9 +118,13 @@ marks[2] = 90;
 Replace a value like this:
 
 ```
-String[] goodLanguages = {"Python", "JavaScript", "Swift"}
-goodLanguages[1] = "Java"
+String[] goodLanguages = {"Python", "JavaScript", "Swift"};
+goodLanguages[1] = "Java";
 goodlanguages >> {"Python", "Java", "Swift"}
 ```
 
-`ArrayLists` are different as their size can be changed and they have to be imported.
+`ArrayLists` have a different functionality to `Arrays` as their size can be changed. Their declaration syntax is slightly different to what we have seen so far and we also have to import them at the top of our file to use them.
+
+```
+import java.util.ArrayList;
+```

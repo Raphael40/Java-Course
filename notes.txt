@@ -2,4 +2,4 @@ Java-fundamentals - Said I would come back to private and protected classes late
 Java-fundamentals - Said I would come back to static and void later
 Java-F - add explanation for the out directory
 
-Test semi colons
+Change variables to cheat sheet?

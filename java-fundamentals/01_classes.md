@@ -23,14 +23,14 @@ Congratulations, you have run your first Java program.
 
 ### Run with the terminal
 
-If like me you are used to running code with the terminal, from the menu go to View >> Tool Windows >> Terminal to open a new terminal. You will have to type two commands, one to compile the file and another to run it. We can run the code straight away with in the previous step because IntelliJ does the compilation for us.
+If like me you are used to running code with the terminal, from the menu go to View >> Tool Windows >> Terminal to open a new terminal. You will have to type two commands, one to compile the file and another to run it. In the previous step we were able to run the code without manually compiling because IntelliJ does the compilation for us.
 
 ```
 cd exercises
 javac HelloWorld.java
 ```
 
-After running this command a new file will appear with a `1010` icon called `HelloWorld.class`. This is a Java bytecode file and it is a file that has been converted into a bytecode format that the JVM can read using the Java comppiler `javac` command.
+After running this command a new file will appear with a `1010` icon called `HelloWorld.class`. This is a Java bytecode file and it is a file that has been converted into a bytecode format that the JVM can read using the Java compiler `javac` command.
 
 Next:
 
@@ -76,8 +76,6 @@ If you want t learn more about the `main` method this Digital Ocean [article](ht
 
 Within this method we had the following code `System.out.println("Hello, World!");`. To break it down in simple terms we are telling the System to print a given line (println) to the standard output. If we want to be technical, `System` is actually a built in Java class while `out` and `println` are built in methods. This results in "Hello, World!" being printed to our console as we observed earlier.
 
-### Using args
-
 ### Making a new class
 
 Now we're going to make our own class. Right click on the exercises directory then select new >> Java Class
@@ -112,4 +110,29 @@ public class FirstClass {
 
 </details>
 
-Next we're going to print
+Next we can add a line that prints text to our output:
+
+<details>
+<summary>FirstCLass</summary>
+
+```
+public class FirstClass {
+    public static void main(String[] items) {
+        System.out.println("This is my first class")
+    }
+}
+```
+
+</details>
+
+Once again we can run this code by selecting the green arrow or compiling it in the terminal.
+
+---
+
+In the next section we're going to look at variables and operators.
+
+[next](../java-fundamentals/advanced-data_types.md)
+
+---
+
+## [back](../README.md)
