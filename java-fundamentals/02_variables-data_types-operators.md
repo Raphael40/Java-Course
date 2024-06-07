@@ -4,7 +4,7 @@ If you are completely new to programming it is important to understand some prim
 
 Variables are containers for storing data values of any data type (both primitive and non-primitive).
 
-### Primitive data types
+## Primitive data types
 
 There are eight primitive data types in Java: `byte`, `short`, `int`, `boolean`, `char`, `long`, `float`, and `double`
 
@@ -14,7 +14,7 @@ With decimal point numbers, `float` and `double` are both available with `double
 
 The difference between all of these terms comes down to the range of numbers they can handle and the amount of storage they take up.
 
-Following this we have `char` which is used to store a single character in single quotes. It is closely linked with the non-primitive data type; `String`, which is used for a sequence of characters. So in this case, 'H' (single quotes) is a `char` and "Hi" (double quotes) is a `String`. You will normally use `String`
+Following this we have `char` which is used to store a single character in single quotes. It is closely linked with the non-primitive data type; `String`, which is used for a sequence of characters. So in this case, 'H' (single quotes) is a `char` and "Hi" (double quotes) is a `String`. You will normally use `String`.
 
 The final primitive data type is `boolean` which is used to represent either `true` or `false`. Booleans are commonly used for conditional statements and evaluating expressions.
 
@@ -59,7 +59,7 @@ public class FirstClass {
 
 </details>
 
-### Operators
+## Operators
 
 Operators are sets of syntax used to conduct operations between different pieces of data.
 
@@ -178,10 +178,111 @@ System.out.println(!(five == six));
 >> true
 ```
 
-In the next section we're going to look at Strings, ArrayLists and HashMaps.
+## if statements
+
+One of the best places to see these operators in action is inside an `if` statement. The concept of the `if` statement is simple, we are writing a program that will execute a specific code block **if** a specified condition evaluates to true.
+
+The syntax is as follows:
+
+```
+if (condition) {
+    // Execute code in curly backets
+}
+```
+
+Here are a few examples:
+
+```
+// If 10 is greater than 5
+int ten = 10
+
+if (ten > 5) {
+    System.out.println("I printed because it is true that 10 is greater than 5");
+}
+```
+
+Any operation that results in a boolean can be put in an if statement.
+
+```
+int five = 5;
+int six = 6;
+
+if (five < 20 && six < 20) {
+    System.out.println("Logical operators can be used in if statements");
+}
+
+```
+
+### else
+
+We can use the keyword `else` to add a fallback condition.
+
+```
+if (condition) {
+    // Execute code in curly backets
+} else {
+    // Execute this second code block
+}
+```
+
+If the condition equates to false, the code after the else will be run instead.
+
+```
+String cat = "Hendrix";
+
+if (cat == "Caspian") {
+    System.out.println("That's my cat, Caspian!");
+} else {
+    System.out.println("Oh nah that's not my cat");
+}
+```
+
+### else if
+
+We're not done, there's also `else if` statements that let us add even more conditions!
+
+```
+if (condition) {
+    // Execute code in curly backets
+} else if (second condition) {
+    // Execute this second code block
+} else {
+    // Execute if first two both fail
+}
+
+String cat = "Hendrix";
+
+if (cat == "Caspian") {
+    System.out.println("That's my cat, Caspian!");
+} else if (cat == "Hendrix") {
+    System.out.println("Ah it's Hendrix");
+} else {
+    System.out.println("I do not know this cat");
+}
+```
+
+In this scenario we have three different outcomes. If the cat is "Caspian" we print "That's my cat, Caspian!", if the cat is "Hendrix" we print "Ah it's Hendrix" and if the cat is neither "Caspian" nor "Hendrix" we print "I do not know this cat". Feel free to change the value of `cat` and see what happens.
+
+Exercises:
+
+Check if a number is positive or negative
+
+Check if a number is odd or even
+
+Check if a person is 18 years old
+
+Find the largest of three numbers
+
+Grade calculation based on marks
+
+In the next section we're going to look at Strings, Arrays, ArrayLists and loops.
 
 [next](../java-fundamentals/advanced-data_types.md)
 
 ---
 
 ## [back](../README.md)
+
+```
+
+```

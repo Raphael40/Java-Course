@@ -1,6 +1,8 @@
-# Java fundamentals - classes
+# Java fundamentals - Hello World, classes
 
-In this module we're going to look at the fundementals of Java including classes and conditionals.
+In this module we're going to run our first program and look at the fundementals of Java including classes and conditionals.
+
+## Hello World
 
 To follow along you will need to clone this repo which contains starter code and a completed repo:
 https://github.com/Raphael40/Java-Course-Support-Repo
@@ -14,8 +16,6 @@ Next we want to switch onto the java-fundamentals branch as shown in the image b
 ![checkout](images/Java-checkout.JPG)
 
 Alternatively you can open a terminal in Intellij by going to the Menu then View >> Tool Windows >> Terminal and running this command: `git switch java-fundamentals`
-
-### Hello World
 
 Some new files will appear. Go to the exercises directory and open the `HelloWorld` file inside. If you have installed the JDK correctly a green arrow will be visible on the toolbar at the top of the interface and in the gutter to the left hand side of the code. Select one of the green arrows, the text `Hello, World!` should be printed to the screen.
 
@@ -42,7 +42,7 @@ java HelloWorld
 
 The JVM has read our compiled code and printed the output to the terminal.
 
-### Classes
+## Classes
 
 If we look at the code inside the `HelloWorld.java` file, it can be broken down into three sections.
 
@@ -127,9 +127,44 @@ public class FirstClass {
 
 Once again we can run this code by selecting the green arrow or compiling it in the terminal.
 
+To make a new class with the terminal follow these steps:
+
+<details>
+<summary>Terminal</summary>
+
+```
+cd exercises
+touch MyClass.java
+```
+
+Then add the class declaration:
+
+```
+package exercises;
+
+public class MyClass {
+
+}
+
+```
+
+Finally add your main method
+
+</details>
+
+### Using String[] args
+
+As mentioned earlier we can pass values into our class using String[] args. We will cover the syntax later but for now, in your `FirstClass` change the print to this:
+
+```
+System.out.println(items[0])
+```
+
+With IntelliJ
+
 ---
 
-In the next section we're going to look at variables and operators.
+In the next section we're going to look at Variables, operators and conditionals.
 
 [next](../java-fundamentals/advanced-data_types.md)
 

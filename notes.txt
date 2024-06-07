@@ -1,5 +1,5 @@
-Java-fundamentals - Said I would come back to private and protected classes later
-Java-fundamentals - Said I would come back to static and void later
-Java-F - add explanation for the out directory
+classes - Said I would come back to private and protected classes later
+classes - Said I would come back to static and void later
+classes? - add explanation for the out directory
 
 Change variables to cheat sheet?

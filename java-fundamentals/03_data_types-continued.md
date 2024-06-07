@@ -1,8 +1,8 @@
 # Java fundamentals - advanced data Types
 
-In this section we'll cover the following non-primitive data types: Strings, Arrays, Hashes. The latter two can also be called data structures.
+In this section we'll cover the following: Strings, Arrays, loops
 
-### Strings
+## Strings
 
 **Strings** are essentially objects of the `String` class which are represented by a collection of characters surrounded by double quotes. Because a `String` is a class it also has many methods which can be called upon it for a variety of results:
 
@@ -62,45 +62,18 @@ System.out.println(backslash);
 >> "This is a backslash - \"
 ```
 
-## Data Structures
+## Arrays
 
-### Arrays and ArrayLists
-
-Make a new class called DataStructures.
-
-<details>
-<summary>With the terminal</summary>
-
-```
-cd exercises
-touch DataStructures.java
-```
-
-Then add the class declaration:
-
-```
-package exercises;
-
-public class DataStructures {
-
-}
-
-```
-
-Finally add your main method
-
-</details>
-
-## Arrays and ArrayLists
-
-`Array's` and `ArrayLists` are used to store multiple values of a single data type in an indexed list. It is indexed such that the first item of the `Array` has the numerical value of `0` and it counts up from there. The key difference between the two is that `Array's` are fixed in size while `ArrayList's` are dynamic and change in size.
+`Arrays` are used to store multiple values of a single data type in an indexed list. It is indexed such that the first item of the `Array` has the numerical value of `0` and it counts up from there.
 
 There are two ways to initialize an `Array`:
 
 1. Use curly brackets
 
 ```
-public class DataStructures {
+<type>[] name = {1, 2, 3}
+
+public class DataStructuresArray {
     public static void main(String[] args) {
 
         String[] workdays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
@@ -116,32 +89,87 @@ public class DataStructures {
 }
 ```
 
+Here is the indexing visualised:
+
+| Monday | Tuesday | Wednesday | Thursday | Friday |
+| ------ | ------- | --------- | -------- | ------ |
+| 0      | 1       | 2         | 3        | 4      |
+
 2. Using the 'new' keyword requires you to specify the number of items in advance
 
 ```
-int[] numbersArray = new int[3];
+String[] myLanguages = new String[4];
 
-// Assign the values
-numbersArray[0] = 10;
-numbersArray[1] = 40;
-numbersArray[2] = 90;
+myLanguages[0] = "Python";
+myLanguages[1] = "JavaScript";
+myLanguages[2] = "Swift";
+myLanguages[3] = "Ruby";
 
-// Get its length, don't use parenthesis for <Array>.length
-System.out.println(numbersArray.length);
->> 3
+System.out.println(myLanguages.length); // Don't use parenthesis for <Array>.length
+>> 4
+
+System.out.println(myLanguages[2]);
+>> Swift
+
+// In both versions we can replace a value like this
+myLanguages[2] = "Java";
+
+System.out.println(myLanguages[2]);
+>> Java
 ```
 
-Replace a value like this:
+Since Array's have a fixed length you cannot add or remove elements, you can only change the value of existing elements. There are a few tricks such as making a shorter copy of the Array excluding the element you want to remove or replacing the value with `null`. But generally, if you are working with an Array that you want to manipulate it is better to use an `ArrayList` rather than an Array.
 
-```
-String[] goodLanguages = {"Python", "JavaScript", "Swift"};
-goodLanguages[1] = "Java";
-goodlanguages >> {"Python", "Java", "Swift"}
+## ArrayLists
 
-```
+You may find `ArrayLists` to be more appropriate in most cases as we often need to manipulate our data which may involve increasing or reducing its size. An `ArrayList` is a type of `List` that has many useful methods we can call on it.
 
-`ArrayLists` have a different functionality to `Arrays` as their size can be changed. Their declaration syntax is slightly different to what we have seen so far and we also have to import them at the top of our file to use them.
+To create an `ArrayList` we have to import it at the top of our page and then declare it using slightly differeny syntax to the `Array`.
 
 ```
 import java.util.ArrayList;
+
+ArrayList<Type> arrayListName= new ArrayList<>();
+
+// Which becomes
+
+ArrayList<Integer> myNumbers= new ArrayList<>();
+
 ```
+
+Note that we use `Integer` rather than `int`. This is because you cannot declare an ArrayList with a primitive data type so we use `Integer` which is the parent class of `int` instead.
+
+### add(), get(), set(), remove()
+
+```
+ArrayList<String> anime = new ArrayList<>();
+
+// Add new items:
+anime.add("Naruto");
+anime.add("One Piece");
+anime.add("Full Mental Alchemist Brotherhood");
+
+System.out.println("ArrayList: " + anime);
+>> ArrayList: [Naruto, One Piece, Full Metal Alchemist Brotherhood]
+
+// Get a single item by index
+int indexOfNaruto = anime.indexOf("Naruto");
+System.out.println("Naruto: " + anime.get(indexOfNaruto));
+>> Naruto: Naruto
+
+// Set method for replacing an item by index
+int indexOfOnePiece = anime.indexOf("One Piece");
+anime.set(indexOfOnePiece, "Hunter X Hunter")
+System.out.println("ArrayList: " + anime);
+>> ArrayList: [Naruto, Hunter X Hunter, Full Metal Alchemist Brotherhood]
+
+// Remove elements by index
+int indexOfFMAB = anime.indexOf("Full Metal Alchemist Brotherhood");
+String fMAB = anime.remove(indexOfFMAB);
+System.out.println("Updated ArrayList: " + anime);
+>> Updated ArrayList: [Naruto, Hunter X Hunter]
+System.out.println("Removed Element: " + str);
+>> Removed Element: Full Metal Alchemist Brotherhood
+```
+
+## Loops
