@@ -3,3 +3,5 @@ classes - Said I would come back to static and void later
 classes? - add explanation for the out directory
 
 Change variables to cheat sheet?
+
+Test ArrayLIsts in IntelliJ
