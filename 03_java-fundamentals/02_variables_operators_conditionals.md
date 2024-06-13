@@ -59,6 +59,66 @@ public class FirstClass {
 
 </details>
 
+### Strings
+
+**Strings** are essentially objects of the `String` class which are represented by a collection of characters surrounded by double quotes. Because a `String` is a class it also has many methods which can be called upon it for a variety of results:
+
+```
+String cat = "caspian";
+System.out.println(cat.length());
+>> 7
+
+System.out.println(cat.toUpperCase());
+>> "CASPIAN";
+
+System.out.println(cat.startsWith("c"));
+>> true;
+
+```
+
+You can also concatenate multiple Strings together. This can be confusing because it uses the `+` operator for concatenation rather than addition.
+
+```
+String h = "Hello";
+String t = "there";
+
+String greeting = h + " " + t + ", General Grevious"; // Add empty strings for spaces
+System.out.println(greeting);
+>> "Hello there, General Grevious"
+
+// You can accomplish the same thing with the concat() method
+String greeting2 = h.concat(" ").concat(t).concat(", General Grevious");
+>> "Hello there, General Grevious"
+
+// Add a String and an int
+String fiftyStr = "50";
+int fiftyInt = 50;
+String fiftyFifty = fiftyStr + fiftyInt; // ints get coerced into Strings when concatenated
+>> "5050"
+```
+
+Curious what happens when you add Strings and chars? Check section 5 of this [article](https://www.baeldung.com/java-char-vs-string)
+
+If you have to write text that uses double or single quotes you can use an escape character:
+
+```
+String sentence = "And then main character said "This cereal is really tasty"";
+>> error
+
+// Double quote escape with a backslash
+String sentence = "And then the main character said \"This cereal is really tasty\"";
+System.out.println(sentence);
+>> And then the main character said "This cereal is really tasty"
+
+// Also used for single quotes
+String text2 = "it\'s ok";
+
+// to write an actual backslash in Java use two of them
+String backslash = "This is a backslash - \\";
+System.out.println(backslash);
+>> "This is a backslash - \"
+```
+
 ## Operators
 
 Operators are sets of syntax used to conduct operations between different pieces of data.
@@ -178,7 +238,9 @@ System.out.println(!(five == six));
 >> true
 ```
 
-## if statements
+## Conditionals
+
+### if statements
 
 One of the best places to see these operators in action is inside an `if` statement. The concept of the `if` statement is simple, we are writing a program that will execute a specific code block **if** a specified condition evaluates to true.
 
@@ -201,13 +263,13 @@ if (ten > 5) {
 }
 ```
 
-Any operation that results in a boolean can be put in an if statement.
+Any operation that evaluates to a boolean can be used as the conditional of an if statement.
 
 ```
 int five = 5;
-int six = 6;
+String six = 'six';
 
-if (five < 20 && six < 20) {
+if (five < 20 && six == 'six') {
     System.out.println("Logical operators can be used in if statements");
 }
 
@@ -215,7 +277,7 @@ if (five < 20 && six < 20) {
 
 ### else
 
-We can use the keyword `else` to add a fallback condition.
+We can use the keyword `else` to add a secondary condition.
 
 ```
 if (condition) {
@@ -263,7 +325,7 @@ if (cat == "Caspian") {
 
 In this scenario we have three different outcomes. If the cat is "Caspian" we print "That's my cat, Caspian!", if the cat is "Hendrix" we print "Ah it's Hendrix" and if the cat is neither "Caspian" nor "Hendrix" we print "I do not know this cat". Feel free to change the value of `cat` and see what happens.
 
-Exercises:
+## Exercises
 
 Check if a number is positive or negative
 
@@ -277,12 +339,8 @@ Grade calculation based on marks
 
 In the next section we're going to look at Strings, Arrays, ArrayLists and loops.
 
-[next](../java-fundamentals/advanced-data_types.md)
+[next](../java-fundamentals/03_arrays_loops.md)
 
 ---
 
 ## [back](../README.md)
-
-```
-
-```

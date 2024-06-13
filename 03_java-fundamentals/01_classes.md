@@ -166,7 +166,7 @@ With IntelliJ
 
 In the next section we're going to look at Variables, operators and conditionals.
 
-[next](../java-fundamentals/advanced-data_types.md)
+[next](../java-fundamentals/02_variables_operators_conditionals.md)
 
 ---
 
