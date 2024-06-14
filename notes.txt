@@ -5,3 +5,5 @@ classes? - add explanation for the out directory
 Change variables to cheat sheet?
 
 Test ArrayLIsts in IntelliJ
+
+Read up about constructors and add more detail to explanation.

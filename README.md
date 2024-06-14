@@ -14,7 +14,7 @@ Learn Java and Spring Boot by taking this free interactive course. Each module h
 | [Intro](./01_intro/README.md)                          | What is Java?                                              |
 | [Setup](./02_setup/README.md)                          | Install Java, Java Development Kit && Intellij             |
 | [Java Fundamentals](./java-fundamentals/01_classes.md) | Classes, Variables, Operators, Conditionals, Arrays, Loops |
-| [Advanced Fundamentals](./04_advanced-fundamentals/)   | CLass Methods, Hashmaps                                    |
+| [Advanced Fundamentals](./04_advanced-fundamentals/)   | Class Methods, Hashmaps, Testing(JUnit)                    |
 | Project - build X                                      | Walk along project                                         |
 | Intro to Spring Boot                                   | What is Spring Boot?                                       |
 

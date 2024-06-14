@@ -1,4 +1,4 @@
-# Java fundamentals - variables, data types and operators
+# Java fundamentals - variables, operators, conditionals
 
 If you are completely new to programming it is important to understand some primitve and non-primitive data types as well as the variables they are assigned to.
 

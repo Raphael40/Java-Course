@@ -275,7 +275,7 @@ Given an `ArrayList` of animals, remove the rat
 
 Do Fizzbuzz but it prints off every number in the range
 
-[next]()
+[next](../04_advanced-fundamentals/01_class-methods.md)
 
 ---
 
