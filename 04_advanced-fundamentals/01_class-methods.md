@@ -1,6 +1,6 @@
 # Advanced fundamentals
 
-In this section we'll learn about class methods and
+In this section we'll learn about the difference between static and instance methods followed by the void and return keywords.
 
 ## Class Methods
 
@@ -381,3 +381,13 @@ class Five {
 
 >> 750
 ```
+
+## Multiple classes
+
+In the next section we're going to have our first look at testing.
+
+[next](../04_advanced-fundamentals/02_testing-intro.md)
+
+---
+
+## [back](../README.md)
