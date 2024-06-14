@@ -11,7 +11,7 @@ Methods are integral to Java and we have already seen many built in methods such
 A class method is something we write ourselves. We have already been using the `main()` method which is mandatory for each class but we haven't had to call it because it is called automatically due to its special nature. If we want we can use similar syntax to add more methods to our class other than the main method.
 
 ```
-class Dog {
+public class Dog {
 
   // a normal main method signature
   public static void main(String[] args) {
@@ -34,7 +34,7 @@ In the example above we have our main method which is called automatically and i
 We can also pass arguments into our static methods.
 
 ```
-class Dog {
+public class Dog {
 
   // a normal main method signature
   public static void main(String[] args) {
@@ -80,7 +80,7 @@ Dog boris = new Dog()
 We now have an instance called boris which we can use to call instance methods
 
 ```
-class Dog {
+public class Dog {
 
   // a normal main method signature
   public static void main(String[] args) {
@@ -110,7 +110,7 @@ Dog boris = new Dog("Boris", "Pug")
 Here we have given boris two values, name & breed. We instantiate them in the class using a constructor method which is a public method that has the same name as the class. The constuctor method is automatically called when an instance of the class is created using the `new` keyword. You can technically omitt the constructor but including it makes your code more efficient.
 
 ```
-class Dog {
+public class Dog {
 
   // type declarations
   String name;
@@ -143,7 +143,7 @@ class Dog {
 Now we can do this with multiple instances of Dog.
 
 ```
-class Dog {
+public class Dog {
 
   // type declarations
   String name;
@@ -180,7 +180,7 @@ Lets try another one:
 First we'll create a new class called Games, give it a main method and then create a static method called welcome:
 
 ```
-class Game {
+public class Game {
   public static void main(String[] args) {
 
   }
@@ -195,7 +195,7 @@ class Game {
 Next we can call the welcome method from our main and get it to print off a welcome message:
 
 ```
-class Game {
+public class Game {
   public static void main(String[] args) {
     Game.welcome();
   }
@@ -210,7 +210,7 @@ class Game {
 Next we want to make a constructor so we can create games:
 
 ```
-class Game {
+public class Game {
   String name;
 
   // constructor
@@ -242,7 +242,7 @@ public static void main(String[] args) {
 It would be pretty cool if we could keep track of the score in our game. Lets create another instance field for the score.
 
 ```
-class Game {
+public class Game {
   String name;
   int score;
 
@@ -277,7 +277,7 @@ public void displayScore() {
 Now all we need to do is call the methods in main:
 
 ```
-class Game {
+public class Game {
   String name;
   int score;
 
@@ -318,7 +318,7 @@ class Game {
 The word `void`, which we have been seeing a lot of, is added in front of our method when we don't want the method to return anything. `return` is a keyword that can be used when we want to use the value that is formed inside a method. This can be easily demonstrated with an example.
 
 ```
-class Five {
+public class Five {
   public static void main(String[] args) {
     Five.isFive(5)
     Five.isFive(6)
@@ -338,7 +338,7 @@ We have a class Five with a main method that calls the timesFive method. At this
 Void is a keyword we use when the method does not return anything. If the method does return something, in this case an `int`, we simply replace void with int:
 
 ```
-class Five {
+public class Five {
   public static void main(String[] args) {
     Five.isFive(5)
     Five.isFive(6)
@@ -357,7 +357,7 @@ class Five {
 Now we can access the return value in our main class by saving it to a variable.
 
 ```
-class Five {
+public class Five {
   public static void main(String[] args) {
     int number = Five.isFive(5)
     int secondNumber = Five.isFive(6)
@@ -383,6 +383,99 @@ class Five {
 ```
 
 ## Multiple classes
+
+We can instantiate one class from another class:
+
+```
+public class Patient {
+  String name;
+  int age;
+  String condition;
+
+  public Patient(String name, int age) {
+    this.name = name;
+    this.age = age;
+    this.condition = "unknown";
+  }
+
+  public void updateHealth(String condition) {
+    this.condition = condition;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public int getAge() {
+    return this.age;
+  }
+
+  public String getCondition() {
+    return this.condition;
+  }
+}
+```
+
+Here we have a patient class that lets you instantiate a new patient with a name and age and then update their health. It also has three methods to retrieve this information.
+
+We can make an instance of this class from our Hospital class:
+
+```
+import java.util.ArrayList;
+
+public class Hospital {
+  // A static ArrayList exists in the class
+  static ArrayList<String> patients = new ArrayList<>();
+
+  public static void main(String[] args) {
+    // Create instances of the Patient class
+    Patient Rory = new Patient("Rory", 26);
+    Patient Gina = new Patient("Gina", 24);
+
+    // Make changes to the patient class by calling the updateHealth method
+    Rory.updateHealth("food poisoning");
+    Gina.updateHealth("Covid-19");
+
+    Hospital.addPatient(Rory);
+    Hospital.addPatient(Gina);
+
+    Hospital.listRecords();
+  }
+
+  public static void addPatient(Patient patient) {
+    String record = patient.getName() + " is " patient.getAge() " years old and has: " + patient.getCondition();
+
+    // Add record made of data from Patients class to the patients array
+    patients.add(record)
+  }
+
+  public static void listRecords() {
+    // loop through the patients array and print each item
+    for (String record : patients) {
+      System.out.println(record);
+    }
+  }
+}
+
+>> Rory is 26 and has food poinsoning
+>> Gina is 24 and has Covid-19
+```
+
+The above two classes illustrates how one class with a main method can call methods from another class. This helps with separation of concerns and gives structure to the program.
+
+**Note:** If Patient and Hospital are in the same package (e.g., the default package or another common package), you do not need an import statement.
+
+Otherwise, you would have to import the the Patient at the top of the Hospital script with an import statement:
+
+```
+import root.path.Patient;
+
+pubic class Hospital {
+  ...
+}
+```
+
+---
 
 In the next section we're going to have our first look at testing.
 

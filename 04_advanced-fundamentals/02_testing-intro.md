@@ -117,18 +117,6 @@ If we run the CalculatorTest now we get:
 >> Test passed: subtract(5, 3)
 ```
 
-**Note:** If Calculator and CalculatorTest are in the same package (e.g., the default package or another common package), you do not need an import statement.
-
-Otherwise, you would have to import the the Calculator at the top of the CalculatorTest script with an import statement:
-
-```
-import root.path.Calculator;
-
-pubic class CalculatorTest {
-  ...
-}
-```
-
 ## Testing Frameworks
 
 ### Why use a framework
@@ -143,6 +131,6 @@ If we can manually write tests like above then why would we need a testing frame
 
 ### Passing tests
 
-Before we write our own tests it can be good to get comfortable writing code to pass tests. This will be helpful getting familiar with fixing a broken test through error messages. It is also a common practice in test driven development to write the test before you write the code.
+Before we write our own tests it can be good to get comfortable writing code to pass pre-written tests. This will be helpful getting familiar with fixing a broken test through error messages. It is also a common practice in test driven development to write the test before you write the code.
 
 Switch onto `passing tests` branch
