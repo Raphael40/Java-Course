@@ -68,11 +68,13 @@ public static void main(String[] args) {
 }
 ```
 
-This is a public method called `main`. Every class has a main method and it is the starting point for the Java application inside the class. We will revisit `static` and `void` later. Within the main() parenthesis is `String[] args` which is also required for this method to run. `String[]` means that this method takes in an array of strings and `args` is the name of that array (args is a placeholder and can be named anything). This array of strings is passed into the method from the terminal.
+This is a public method called `main`. Every program has a main method and it is the starting point for the Java application inside the class. We will revisit `static` and `void` later. Within the main() parenthesis is `String[] args` which is also required for this method to run. `String[]` means that this method takes in an array of strings and `args` is the name of that array (args is a placeholder and can be named anything). This array of strings is passed into the method from the terminal.
 
-The `main` method is essential and must exist in every program. It is the first thing that is called by the JVM and is used to execute or call other methods in the program.
+The `main` method is essential and must exist in every program. It is the first thing that is called by the JVM and is used to execute or call other methods in the program. If you have a program with multiple classes then only one of them needs to have a main method but the others can for specific use cases.
 
-If you want t learn more about the `main` method this Digital Ocean [article](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method) explains things in more detail.
+Notice how if we delete the main method from the class the green arrow disappears.
+
+If you want to learn more about the `main` method this Digital Ocean [article](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method) explains things in more detail.
 
 Within this method we had the following code `System.out.println("Hello, World!");`. To break it down in simple terms we are telling the System to print a given line (println) to the standard output. If we want to be technical, `System` is actually a built in Java class while `out` and `println` are built in methods. This results in "Hello, World!" being printed to our console as we observed earlier.
 

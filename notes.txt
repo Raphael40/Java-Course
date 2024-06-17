@@ -2,8 +2,15 @@ classes - Said I would come back to private and protected classes later
 classes - Said I would come back to static and void later
 classes? - add explanation for the out directory
 
+Excluded directory is excluded from the module?
+
 Change variables to cheat sheet?
 
-Test ArrayLIsts in IntelliJ
+Confirm ArrayLists section works in IntelliJ
 
 Read up about constructors and add more detail to explanation.
+
+Start a new JUnit test project by typing @test or adding JUnit manually
+
+If I change the name of a class test will it be unable to find the 
+class it's testing without an import statement?

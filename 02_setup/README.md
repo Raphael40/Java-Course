@@ -34,15 +34,9 @@ IntelliJ is an integrated development environment like Visual Studio Code but de
 
 Download and install the free version of IntelliJ from here: [https://www.jetbrains.com/idea/download/?section=windows](https://www.jetbrains.com/idea/download/?section=windows) (You may need to scroll down the page for the free, open source version).
 
-You now have two ways to run your Java files. Directly in the terminal with the command:
+Once installed...
 
-```
-java yourFile.java
-```
-
-Or run your code in IntelliJ by selecting the green arrow, printing the output in the IntelliJ tool bar.
-
-## Next is the java-fundamental module which will teach the basic syntax of Java
+Next is the java-fundamental module which will teach the basic syntax of Java
 
 [next](../java-fundamentals/01_classes.md)
 
