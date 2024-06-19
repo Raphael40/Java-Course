@@ -119,7 +119,9 @@ System.out.println("ArrayList count: " + anime.size());
 // Note that .size() returns the number of elements and .length returns the capacity
 ```
 
-There are many more methods for manipulating ArrayLists but for now we're going to look at another method that will help us manipulate our arrays and much more.
+If you know the exact length of your data then you should always use an `Array` as it takes less memory and improves performance. Otherwise, use an `ArrayList`.
+
+There are many more methods for manipulating ArrayLists but for now we're going to look at another condional that will help us manipulate our arrays.
 
 ## Loops
 

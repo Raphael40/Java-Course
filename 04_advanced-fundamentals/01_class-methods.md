@@ -382,7 +382,7 @@ public class Five {
 >> 750
 ```
 
-## Multiple classes
+## Multiple classes - make more incremental?s
 
 We can instantiate one class from another class:
 
@@ -398,7 +398,7 @@ public class Patient {
     this.condition = "unknown";
   }
 
-  public void updateHealth(String condition) {
+  public void updateCondition(String condition) {
     this.condition = condition;
   }
 
@@ -432,9 +432,9 @@ public class Hospital {
     Patient Rory = new Patient("Rory", 26);
     Patient Gina = new Patient("Gina", 24);
 
-    // Make changes to the patient class by calling the updateHealth method
-    Rory.updateHealth("food poisoning");
-    Gina.updateHealth("Covid-19");
+    // Make changes to the patient class by calling the updateCondition method
+    Rory.updateCondition("food poisoning");
+    Gina.updateCondition("Covid-19");
 
     Hospital.addPatient(Rory);
     Hospital.addPatient(Gina);
@@ -443,10 +443,10 @@ public class Hospital {
   }
 
   public static void addPatient(Patient patient) {
-    String record = patient.getName() + " is " patient.getAge() " years old and has: " + patient.getCondition();
+    String record = patient.getName() + " is " + patient.getAge() + " years old and has: " + patient.getCondition();
 
     // Add record made of data from Patients class to the patients array
-    patients.add(record)
+    patients.add(record);
   }
 
   public static void listRecords() {

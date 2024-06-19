@@ -352,3 +352,460 @@ Don't worry if this syntax looks unusual to you `() -> expression`. This is a la
 In this case `assertEquals` is automatically called when the `assertAll` method is called.
 
 We will revisit these later.
+
+### Testing an instance
+
+Testing an instance is also fairly straight forward.
+
+Lets make a new class `Coffee` which has three instance fields `type`, `size` & `price` as well as a method for displaying each value:
+
+```
+public class Coffee {
+    private String type;
+    private double price; // Double is a primitive data type for decimals
+
+    // Constructor
+    public Coffee(String type, int size, double price) {
+        this.type = type;
+        this.price = price;
+    }
+
+    public void displayDetails() {
+
+    }
+
+}
+
+```
+
+Then we want to
+
+```
+public class Coffee {
+
+    ...
+
+    public String displayDetails() {
+        return "Coffee Type: " + type + "Price: £" + price;
+    }
+
+}
+
+```
+
+Create a new test class `CoffeeTest` (alt Enter > Create Test):
+
+```
+package main.java;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class CoffeeTest {
+
+}
+```
+
+Now we can add our first test method called `coffeeInstance`:
+
+```
+class CoffeeTest {
+
+    @Test
+    @DisplayName("Coffee class instance test")
+    void coffeeInstance() {
+
+    }
+}
+
+```
+
+Then we just need to create a new instance of `Coffee` inside our test:
+
+```
+class CoffeeTest {
+
+    @Test
+    @DisplayName("Coffee class instance test")
+    void coffeeInstance() {
+        Coffee americano = new Coffee("Americano", 3.99);
+
+
+    }
+}
+```
+
+At this point we can already make an assertion that `americano` is an instance of `Coffee`:
+
+```
+class CoffeeTest {
+
+    @Test
+    @DisplayName("Americano is instance of Coffee")
+    void coffeeInstance() {
+        Coffee americano = new Coffe("Americano", 3.99);
+
+        // This checks that the actual class of 'americano' is Coffee
+        assertEquals(Coffee.class, americano.getClass());
+    }
+}
+```
+
+Now we can test our `displayDetails()` method:
+
+```
+class CoffeeTest {
+
+    @Test
+    @DisplayName("Coffee displayDetails method")
+    void displayTest() {
+        // Make an instance
+        Coffee americano = new Coffee("Americano", 3.99);
+
+        // Now call the displayDetails() method
+        String americanoDetails = americano.displayDetails();
+        // And assert that it is equal to our expected output
+        assertEquals(americanoDetails, "Coffee Type: Americano Price: £3.99")
+    }
+}
+```
+
+**Note** that what we write in our test is very similar to what we would write in our `main()` method if we decided to use the `Coffee` class as the main entry point of the program:
+
+```
+public static void main(String[] args) {
+    Coffee americano = new Coffee("Americano", 3.99);
+
+    String americanoDetails = americano.displayDetails();
+    System.out.println(americanoDetails)
+}
+```
+
+We are going to make one more test and this time it will be for the more complex `Patient` and `Hospital` classes that we made in the previous section:
+
+Copy and paste them from here, remind yourself how they work.
+
+We have a patient class that lets you instantiate a new `Patient` with a `name`, `age`, and `condition` and methods to return each value or update the condition.
+
+**Patient**
+
+```
+public class Patient {
+  String name;
+  int age;
+  String condition;
+
+  public Patient(String name, int age) {
+    this.name = name;
+    this.age = age;
+    this.condition = "unknown";
+  }
+
+  public void updateCondition(String condition) {
+    this.condition = condition;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public int getAge() {
+    return this.age;
+  }
+
+  public String getCondition() {
+    return this.condition;
+  }
+}
+```
+
+We have a `Hospital` class with static methods that import and make an instance of the `Patient` class and let us add a `Patient` to the hospital then print of a list of each patient.
+
+**Hospital**
+
+```
+import java.util.ArrayList;
+
+public class Hospital {
+  // A static ArrayList exists in the class
+  static ArrayList<String> patients = new ArrayList<>();
+
+  public static void main(String[] args) {
+    // Create instances of the Patient class
+    Patient Rory = new Patient("Rory", 26);
+    Patient Gina = new Patient("Gina", 24);
+
+    // Make changes to the patient class by calling the updateCondition method
+    Rory.updateCondition("food poisoning");
+    Gina.updateCondition("Covid-19");
+
+    Hospital.addPatient(Rory);
+    Hospital.addPatient(Gina);
+
+    Hospital.listRecords();
+  }
+
+  public static void addPatient(Patient patient) {
+    String record = patient.getName() + " is " + patient.getAge() + " years old and has: " + patient.getCondition();
+
+    // Add record made of data from Patients class to the patients array
+    patients.add(record);
+  }
+
+  public static void listRecords() {
+    // loop through the patients array and print each item
+    for (String record : patients) {
+      System.out.println(record);
+    }
+  }
+}
+```
+
+Lets start by making a test for the `Patient` class:
+
+```
+import static org.junit.jupiter.api.Assertions.*;
+
+class PatientTest {
+
+}
+```
+
+Now write a @Test called with an @DisplayName that reads "Patient class instance test" and use `assertEquals` to confirm that you have made an instance of the `Patient` class.
+
+<details>
+<summary>PatientTest Instance</summary>
+
+```
+import static org.junit.jupiter.api.Assertions.*;
+
+class PatientTest {
+
+    @Test
+    @DisplayName("Patient class instance test")
+    void patientInstanceTest() {
+        Patient marco = new Patient("Marco", 30);
+
+        assertEquals(Patient.class, marco.getClass());
+    }
+}
+```
+
+</details>
+
+Next we want to test the methods. Since the `getName()`, `getAge()`, and `getCondition()` methods are all fairly simple and similar I'm going to write them into the same test but you can test in three seperate tests if you prefer (Also I am lazy):
+
+<details>
+<summary>PatientTest get()</summary>
+
+```
+import static org.junit.jupiter.api.Assertions.*;
+
+class PatientTest {
+
+    ...
+
+    @Test
+    @DisplayName("Patient class get methods test")
+    void getMethodsTest() {
+        Patient issy = new Patient("Issy", 58);
+
+        // Call the methods
+        String issyName = issy.getName();
+        int issyAge = issy.getAge();
+        String issyCondition = issy.getCondition();
+
+        // Make Assertions
+        assertEquals(issyName, "Issy");
+        assertEquals(issyAge, 58);
+        assertEquals(issyCondition, "unknown");
+    }
+}
+```
+
+</details>
+
+Finally we can test the `updateCondition()` method. Make an instance of Patient, call the `updateCondition()` method and pass in an argument, make an assertion.
+
+```
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class PatientTest {
+
+    ...
+
+    @Test
+    @DisplayName("Patient class updateCondition method test")
+    void updateConditionTest() {
+        Patient sacha = new Patient("Sacha", 22);
+
+        // Starting condition
+        String sachasCondition = sacha.getCondition();
+        assertEquals(sachasCondition, "unknown");
+
+        sacha.updateCondition("Shingles") // Poor sacha he's so young!!
+
+        String sachasNewCondition = sacha.getCondition();
+        assertEquals(sachasNewCondition, "Shingles");
+    }
+}
+```
+
+And with that we can move on to ur `Hospital` class.
+
+```
+package main.java;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class HospitalTest {
+
+}
+```
+
+### Integration test
+
+We may want to test the `Hospital` class in isolation (a unit test) however for that we would need to install another dependency to make a mock replica of the `Patient` class. This is bit too advanced for now. So we will make an integration test.
+
+An integration test tests how two classes or methods interact with each other.
+
+Since it only has static methods we don't need to test for an instance. We also do not test the main() method as it is the entrypoint of the program and is used to call the other methods in our class.
+
+First we want to instantiate a new `Patient` in our `Hospital` class.
+
+<details>
+<summary>Hospital</summary>
+
+```
+class HospitalTest {
+
+    @Test
+    @DisplayName("Hospital addPatient() method")
+    void testAddPatient() {
+        Patient testPatient = new Patient("Test", 30);
+        testPatient.updateCondition("Test condition"); // And give it a condition
+
+    }
+}
+```
+
+</details>
+
+Next we can call our `addPatient()` method. To test that it has worked we can use an assertion to verify the length of the Hospital.patients `ArrayList` which the `addPatient` method supposedly adds a patient to. It shoud have a size of 1.
+
+<details>
+<summary>Hospital addPatient</summary>
+
+```
+class HospitalTest {
+
+    @Test
+    @DisplayName("Hospital addPatient() method")
+    void testAddPatient() {
+        Patient testPatient = new Patient("Test", 30);
+        testPatient.updateCondition("Test condition");
+
+        Hospital.addPatient(testPatient);
+
+        assertEquals(1, Hospital.patients.size());
+    }
+}
+```
+
+</details>
+
+Now we can test the listRecords method. Add two new patients to the patients Array.
+
+<details>
+<summary>Hospital listRecord</summary>
+
+```
+class HospitalTest {
+
+    ...
+
+    @Test
+    @DisplayName("Hospital addPatient() method")
+    void testListRecords() {
+        // Create and add our first patient
+        Patient testPatient = new Patient("Test", 30);
+        testPatient.updateCondition("Test condition");
+        Hospital.addPatient(testPatient);
+
+        // Create and add our second patient
+        Patient testPatient2 = new Patient("Test2", 32);
+        testPatient2.updateCondition("Test condition 2");
+        Hospital.addPatient(testPatient2);
+
+        // assertion
+    }
+}
+```
+
+</details>
+
+There is one problem though, in our `Hospital.listRecords()` method we are printing the result to the output. This is tricky to test and also in real world applications you wouldn't normally print data to the output. Therefore we can refactor our `Hospital.listRecords()` method to return the `patients` ArrayList:
+
+```
+import java.util.ArrayList;
+
+public class Hospital {
+
+    static ArrayList<String> patients = new ArrayList<>();
+
+    ...
+
+    // change return type to ArrayList instead of void
+    public static ArrayList<String> listRecords() {
+
+        // return the static patients ArrayList
+        return patients; // very easy!
+    }
+}
+```
+
+**Note** depending on what we want to do with the data we could also initialize a new Array equal to the size of the ArrayList, push the patients records into it and return that instead for improved performance.
+
+Now lets test for the ArrayList. Building on our previous code we now want to create a new ArrayList called `expectedOutput` and add items to it equal to our expected output. Then make an assertion between it and the listRecords function:
+
+<details>
+<summary>Hospital listRecord</summary>
+
+```
+class HospitalTest {
+
+    ...
+
+    @Test
+    @DisplayName("Hospital addPatient() method")
+    void testListRecords() {
+        // Create and add our first patient
+        Patient testPatient = new Patient("Test", 30);
+        testPatient.updateCondition("Test condition");
+        Hospital.addPatient(testPatient);
+
+        // Create and add our second patient
+        Patient testPatient2 = new Patient("Test2", 32);
+        testPatient2.updateCondition("Test condition 2");
+        Hospital.addPatient(testPatient2);
+
+        // create a new ArrayList equal to our expected output
+        ArrayList<String> expectedOutput = new ArrayList<>();
+        expectedOutput.add("Test is 30 years old and has: Test condition");
+        expectedOutput.add("Test2 is 32 years old and has: Test condition 2");
+
+        assertEquals(expectedOutput, Hospital.listRecords());
+    }
+}
+```
+
+</details>
+
+I'm sure you're sick of testing. In the next section we're going to look at another data structure called HashMaps.
+
+---
+
+resources:
+Prepare IntelliJ for testing: https://www.jetbrains.com/help/idea/testing.html
+Make JUnit test in IntelliJ: https://www.jetbrains.com/help/idea/junit.html#intellij
