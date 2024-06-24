@@ -2,6 +2,8 @@
 
 In this module we're going to run our first program and look at the fundementals of Java including classes and conditionals.
 
+It is a **strongly typed** language that is mostly used for **object oriented programming**.
+
 ## Hello World
 
 To follow along you will need to clone this repo which contains starter code and a completed repo:
