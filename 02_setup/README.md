@@ -1,42 +1,66 @@
-# Get up and running
+# Setup your machine
+
+In this section:
+
+-   What is a JDK?
+-   How to install a JDK
+-   Setup Intellij or Visual Studio Code
+
+## What is a JDK?
+
+In order to run Java code on our machine we need three things;
+
+1. A `Java Virtual Machine` (**JVM**). The JVM is a runtime that hosts Java programs. It compiles Java into Java bytecode and then interprets the bytecode to run it on the underlying hardware platform. This conversion is why it is easy to run Java on Windows, Linux and iOS.
+2. A `Java Runtime Environment` (**JRE**) which is a package of tools that runs Java programs by creating the JVMs and loading programs into them.
+3. A `Java Development Kit` (**JDK**) which provides the tools necessary to write and develop Java programs that can be executed and run by the JRE and JVM. This includes a version of the language Java.
+
+Conveniently, the JVM and JRE come as part of the JDK installation.
 
 ## Install a JDK
 
-In order to develop apps with Java we need three things;
+There are multiple JDK versions available. In this course we are going to use JDK 17 because it is the most recent version with long term support (LTS). However JDK 21 is set to replace it soon. Since this is a beginners course most of the code we write should work on both.
 
-1. A Java code compiler called the 'Java Virtual Machine'. The JVM is a runtime that hosts Java programs. It works by compiling Java into Java bytecode and then interpreting the bytecode to run it on the underlying hardware platform. This is why it is easy to run Java on Windows, Linux and iOS.
-2. A 'Java Runtime Environment' (JRE) which is a package of tools that runs Java programs by creating the JVMs and loading programs into them.
-3. A 'Java Development Kit' (JDK) which provides the tools necessary to write/develop the Java programs that can be executed and run by the JRE and JVM. This includes a version of the language Java.
+You can download a JDK for MacOS, Linux, and Windows [here](https://www.oracle.com/java/technologies/downloads/#java17). If you use WSL you may find it useful to install a JDK on both the Linux section and the windows section if you decide to use IntelliJ.
 
-Luckily, since being able to run Java programs is a part of being able to develop a Java program, the JVM and JRE come as part of the JDk so we only need to install a JDK.
+If you have a package manager like Homebrew or Chocolatey you can also use them to easily install a JDK.
 
-In this course we are going to use JDK 17 because it is the most recent version with long term support.
-You can download it for MacOS, Linux, and Windows [here](https://www.oracle.com/java/technologies/downloads/#java17)
-If you have a package manager like Homebrew you can use it to easily install a JDK.
-
-To verify the installation type this:
+To verify the installation type `java --version` into your terminal:
 
 ```
 java --version
 
-// which should yeild an output like this:
-
-openjdk 17.0.5 2022-10-18
-OpenJDK Runtime Environment Temurin-17.0.5+8 (build 17.0.5+8)
-OpenJDK 64-Bit Server VM Temurin-17.0.5+8 (build 17.0.5+8, mixed mode)
+>> openjdk 17.0.5 2022-10-18
+>> OpenJDK Runtime Environment Temurin-17.0.5+8 (build 17.0.5+8)
+>> OpenJDK 64-Bit Server VM Temurin-17.0.5+8 (build 17.0.5+8, mixed mode)
 ```
 
-Next we want to install IntelliJ
+## IntelliJ Idea
 
-## Installing IntelliJ
+IntelliJ is an integrated development environment designed spcifially for Java and Kotlin development created by JetBrains. Once you have installed it you can specify the location of the JDK you have downloaded and configure Intellij to run your Java code from inside InteliJ's own system.
 
-IntelliJ is an integrated development environment like Visual Studio Code but designed spcifially for Java development. Once you have installed it you can specify the location of the JDK you have downloaded and configure Intellij to run your Java code from inside InteliJ.
+Download and install the free version of IntelliJ from here: [https://www.jetbrains.com/idea/download/?section=windows](https://www.jetbrains.com/idea/download/?section=windows) (You may need to scroll down the page for the free, open source community version).
 
-Download and install the free version of IntelliJ from here: [https://www.jetbrains.com/idea/download/?section=windows](https://www.jetbrains.com/idea/download/?section=windows) (You may need to scroll down the page for the free, open source version).
+Once installed it will prompt you to connect your JDK (and you can even download a JDK through it if you haven't got one already).
 
-Once installed...
+<div style="text-align: center;" >
+    <img src="images/jetbrains.svg" alt="vscode logo" width="200"/>
+</div>
 
-Next is the java-fundamental module which will teach the basic syntax of Java
+## Visual Studio Code
+
+If you prefer to use [VSCode](https://code.visualstudio.com/Download) over IntelliJ, perhaps due to familiarity, make sure you install the [Extension Pack for Java VSCode](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) extension. Search for `vscjava.vscode-java-pack` in extension to find it.
+
+Even with that you may have to take some extra steps throughout the duration of the course, I will try to cover them.
+
+<div style="text-align: center;" >
+    <img src="images/vscode.svg" alt="vscode logo" width="800"/>
+</div>
+
+---
+
+At this point you should have a JDK installed, either version 17 or 21. A development environment installed either IntelliJ or VSCode with the Java extension pack.
+
+In the next section we are going to look at Java classes and run our first program.
 
 [next](../java-fundamentals/01_classes.md)
 
