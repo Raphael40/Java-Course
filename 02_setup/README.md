@@ -18,11 +18,13 @@ Conveniently, the JVM and JRE come as part of the JDK installation.
 
 ## Install a JDK
 
-There are multiple JDK versions available. In this course we are going to use JDK 17 because it is the most recent version with long term support (LTS). However JDK 21 is set to replace it soon. Since this is a beginners course most of the code we write should work on both.
+There are multiple JDK versions available. It is recommended to choose an LTS version (Long Term Support). Both 17 and 21 are LTS versions and both are suitable for this course. I have chosen 21.
 
-You can download a JDK for MacOS, Linux, and Windows [here](https://www.oracle.com/java/technologies/downloads/#java17). If you use WSL you may find it useful to install a JDK on both the Linux section and the windows section if you decide to use IntelliJ.
+To make things more confusing, there are also multiple distributions of each version. Popular ones include Oracle and Adoptium. Again, for this course it shouldn't really make a difference as the core features are the same.
 
-If you have a package manager like Homebrew or Chocolatey you can also use them to easily install a JDK.
+You can download the Adoptium JDK [here](https://adoptium.net/en-GB/).
+
+Or the Oracle JDK [here](https://www.oracle.com/java/technologies/downloads/#java21)
 
 To verify the installation type `java --version` into your terminal:
 
@@ -62,8 +64,10 @@ At this point you should have a JDK installed, either version 17 or 21. A develo
 
 In the next section we are going to look at Java classes and run our first program.
 
-[next](../java-fundamentals/01_classes.md)
+### References
+
+https://whichjdk.com/
 
 ---
 
-## [back](../README.md)
+[back](../README.md) <span style="float: right;">[next](../java-fundamentals/01_classes.md)</span>
