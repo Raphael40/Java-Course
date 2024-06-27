@@ -1,14 +1,30 @@
-# What is Java (And why should you learn it?)
+# What is Java (And why learn it?)
 
-Java is a free programming language and computing platform released by Sun Microsystems and designed by James Gosling in 1995. It is commonly used for programming web applications, game development, cloud computing, and artificial intelligence. It is a strongly typed language that is mostly used for object oriented programming and has a wide range of supporting tools and active community. It also has a framework called Spring Boot which makes developing REST APIs significantly easier. We will cover this in more detail in the second half of the course.
+### Origins
 
-Java is a good choice for beginners because not only is it relatively easy to learn compared to C and C++ but it's also extremely popular with a search for Java on job sites such as Indeed or LinkedIn yielding thousands of results. It can also be run easily on Windows, Linux, and iOS.
+Java is a free programming language and computing platform released by Sun Microsystems and designed by James Gosling in 1995.
 
-Before we can use it we first need to set up our device and install the Java Virtual Machine so we can run Java o our devices.
+<div style="text-align: center;" >
+    <img src="images/James_Gosling_2008.jpg" alt="James Gosling image from Wikipedea"/>
+</div>
+
+It is used to build websites, games, artificial intelligence, and much more.
+
+It also has a framework called `Spring Boot` which makes developing REST APIs (backends) significantly easier. We will use Spring Boot in the second half of the course.
+
+### Why learn Java
+
+Java is a good choice for beginners because not only is it relatively easy to learn compared to similar languages such as C and C++ but it's also extremely popular. A search for Java on job sites such as Indeed or LinkedIn yields thousands of results. It can also be run easily on Windows, Linux, and iOS.
+
+I personally decided to learn it because I am job hunting. I know `JavaScript` fairly well and wanted to learn a good backend langauge to use instead of `Node.js`. I hoped this would make me more employable to a wider range or roles. But who knows!
+
+---
+
+In the next section we are going to download the required software needed to run Java on our machine.
 
 [next](../setup/README.md)
 
-## Sources
+## References
 
 https://www.java.com/en/download/help/whatis_java.html
 https://aws.amazon.com/what-is/java/
