@@ -4,6 +4,8 @@ classes? - add explanation for the out directory
 
 Excluded directory is excluded from the module?
 
+Explain .gitignore, project-name.iml file and .idea directory. 
+
 Change variables to cheat sheet?
 
 Confirm ArrayLists section works in IntelliJ

@@ -50,9 +50,9 @@ Once installed it will prompt you to connect your JDK (and you can even download
 
 ## Visual Studio Code
 
-If you prefer to use [VSCode](https://code.visualstudio.com/Download) over IntelliJ, perhaps due to familiarity, make sure you install the [Extension Pack for Java VSCode](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) extension. Search for `vscjava.vscode-java-pack` in extension to find it.
+I strongly recommend using IntelliJ for this course because it has the best Java support but if you do find yourself using [VSCode](https://code.visualstudio.com/Download) over IntelliJ, make sure you install the [Extension Pack for Java VSCode](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) extension. Search for `vscjava.vscode-java-pack` in extension to find it.
 
-Even with that you may have to take some extra steps throughout the duration of the course, I will try to cover them.
+This course assumes you are usaing IntelliJ.
 
 <div style="text-align: center;" >
     <img src="images/vscode.svg" alt="vscode logo" width="800"/>
@@ -60,9 +60,9 @@ Even with that you may have to take some extra steps throughout the duration of 
 
 ---
 
-At this point you should have a JDK installed, either version 17 or 21. A development environment installed either IntelliJ or VSCode with the Java extension pack.
+At this point you should have a JDK installed (17 or 21) and IntelliJ or VSCode (with the Java extension pack).
 
-In the next section we are going to look at Java classes and run our first program.
+In the next section we are going to run our first program and look at Java classes.
 
 ### References
 
