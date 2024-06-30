@@ -292,25 +292,20 @@ public void getMovieByTitle(String title, double rating) {
 }
 ```
 
-</details>
 **Note** return automatically breaks our the of loop so we don't need to use the `break` keyword.
+
+</details>
 
 <br>
 
-Notice that both our `rateMovie()` method and our `getMovie()` method use the same loop. In order to avoid repetition we can refactor our `rateMovie()` method to call the `getMovieByTitle()` method which already loops through the `movies` ArrayLIst and returns a movie by its title:
+Notice that both our `rateMovie()` method and our `getMovieByTitle()` methods use the same loop. In order to avoid repetition we can refactor our `rateMovie()` method to take an instance of `Movie` rather than a title and call the `getMovieByTitle()` method from our main class:
 
 <details>
 <summary>rateMovie() method refactor</summary>
 
 ```
-public void rateMovie(String title, double rating) {
-    Movie movie = getMovieByTitle(title); // Find the movie
-
-    if (movie != null) {
-        movie.setRating(rating); // call setRating()
-    } else {
-        System.out.println("Movie not found.");
-    }
+public void rateMovie(Movie movie, double rating) {
+    movie.setRating(rating);
 }
 ```
 
@@ -349,6 +344,9 @@ public ArrayList<Movie> getMovies() {
 <br>
 
 Thats all we need for the `MovieLibrary` class, your code should look like this:
+
+<details>
+<summary>MoviesLibrary class completed</summary>
 
 ```
 package main.java;
@@ -393,3 +391,340 @@ public class MovieLibrary {
     }
 }
 ```
+
+</details>
+
+<br>
+
+### Testing the MovieLibrary class
+
+### Main class
+
+Finally, we can do the `Main` class. This is where we will implement the built in `Scanner` class to get input from the user.
+
+Lets start by creating a new class called `Main` and adding in a `main` method:
+
+<details>
+<summary>Main class</summary>
+
+```
+public class Main {
+    public static void main(String[] args) {
+
+    }
+}
+```
+
+</details>
+
+<br>
+
+The `main` method will call other methods in the class so we have to write those first. Lets create a method that instantiates a `Movie` and adds it to the `MovieLibrary` called `addMovie()`.
+
+This method will be private, static and wont return anything:
+
+```
+private static void addMovie() {
+
+}
+```
+
+When this method is called it will print "Enter the title of the movie:" to the console. On the following line we use the `Scanner` to save the title to a variable using the `nextLine()` method of Scanner. Therefore, we also need to import Scanner at the top of our file and instantiate a new `Scanner` class:
+
+```
+import java.util.Scanner;
+
+public class Main {
+    final private static Scanner movieScanner = new Scanner(System.in); // Scanner instance
+
+    public static void main(String[] args) {
+
+    }
+
+
+    private static void addMovie() {
+      System.out.println("Enter the title of the movie:");
+      String title = movieScanner.nextLine(); // Saves input to the title variable
+    }
+}
+```
+
+Now we can do the same to get the director, rating, and year:
+
+```
+private static void addMovie() {
+    System.out.println("Enter the title of the movie:");
+    String title = movieScanner.nextLine();
+    System.out.println("Enter the director of the movie:");
+    String director = movieScanner.nextLine();
+    System.out.println("Enter the rating of the movie:");
+    double rating = movieScanner.nextDouble();
+    movieScanner.nextLine(); // consume newline character
+    System.out.println("Enter the year of the movie:");
+    int year = movieScanner.nextInt();
+    movieScanner.nextLine(); // consume newline character
+}
+```
+
+Note that after we use `nextInt()` and `nextDouble()` we have to consume the newline character. Thats because they leave a string in the input that is automatically consumed by the next `nextLine()` call which can cause errors. Read more [here](https://www.freecodecamp.org/news/java-scanner-nextline-call-gets-skipped-solved/).
+
+Now we create a new instance of movie, passing in the values:
+
+```
+private static void addMovie() {
+    System.out.println("Enter the title of the movie:");
+    String title = movieScanner.nextLine();
+    System.out.println("Enter the director of the movie:");
+    String director = movieScanner.nextLine();
+    System.out.println("Enter the rating of the movie:");
+    double rating = movieScanner.nextDouble();
+    movieScanner.nextLine();
+    System.out.println("Enter the year of the movie:");
+    int year = movieScanner.nextInt();
+    movieScanner.nextLine();
+
+
+    Movie movie = new Movie(title, director, rating, year);
+}
+```
+
+And finally we create a new instance of MovieLibrary and call its `addMovie()` method, passing in our instance of `Movie`:
+
+```
+private static void addMovie() {
+    System.out.println("Enter the title of the movie:");
+    String title = movieScanner.nextLine();
+    System.out.println("Enter the director of the movie:");
+    String director = movieScanner.nextLine();
+    System.out.println("Enter the rating of the movie:");
+    double rating = movieScanner.nextDouble();
+    movieScanner.nextLine();
+    System.out.println("Enter the year of the movie:");
+    int year = movieScanner.nextInt();
+    movieScanner.nextLine();
+
+    Movie movie = new Movie(title, director, rating, year);
+    MovieLibrary movieLibrary = new MovieLibrary(); // Movie library instance
+    movieLibrary.addMovie(movie); // Passing movie into movieLibrary addMovie() method
+    System.out.println("Movie Added") // Add this for confirmation
+}
+```
+
+Since we want the `MovieLibrary` instance to be accessible by other methods of the class we can move it outside the `addMovie()` method, making it final, private, and static:
+
+```
+public class Main {
+    final private static MovieLibrary movieLibrary = new MovieLibrary(); // move our instance here
+    final private static Scanner movieScanner = new Scanner(System.in);
+
+    public static void main(String[] args) {}
+
+
+    private static void addMovie() {
+        ...
+
+        Movie movie = new Movie(title, director, rating, year);
+        movieLibrary.addMovie(movie);
+    }
+}
+```
+
+To see your method in action you can call `addMovie()` in your `main` method:
+
+```
+public static void main(String[] args) {
+    addMovie();
+}
+```
+
+If you run it and type movie details into the input when prompted you should see this:
+
+```
+// << represents inputs
+
+>> Enter the title of the movie:
+<< Inception
+>> Enter the director of the movie:
+<< Christopher Nolan
+>> Enter the rating of the movie:
+<< 9.0
+>> Enter the year of the movie:
+<< 2010
+>> Movie added.
+```
+
+We can improve our code with error handling. If we make an error such as entering a String when prompted for a double, we will see an `Exception` error like this:
+
+```
+>> Enter the title of the movie:
+<< Alien
+>> Enter the director of the movie:
+<< Ridley Scott
+>> Enter the rating of the movie:
+<< not a double // This causes an error
+>>  Exception in thread "main" java.util.InputMismatchException
+      at java.base/java.util.Scanner.throwFor(Scanner.java:947)
+      at java.base/java.util.Scanner.next(Scanner.java:1602)
+      at java.base/java.util.Scanner.nextDouble(Scanner.java:2573)
+      at main.java.Main.addMovie(Main.java:19)
+      at main.java.Main.main(Main.java:10)
+
+>> Process finished with exit code 1
+```
+
+However, if we use a `try/catch` statement we can try to run a a block of code and if it throws an exception we can catch the error and execute a second block of code instead:
+
+```
+try {
+  //  Block of code to try
+}
+catch(Exception e) {
+  //  I run if there is an error in the try block
+}
+```
+
+This will come in handy later on to avoid exiting our program if we make an error.
+
+Incorporate a `try/catch` like this:
+
+```
+private static void addMovie() {
+    try {
+        System.out.println("Enter the title of the movie:");
+        String title = movieScanner.nextLine();
+        System.out.println("Enter the director of the movie:");
+        String director = movieScanner.nextLine();
+        System.out.println("Enter the rating of the movie:");
+        double rating = movieScanner.nextDouble();
+        movieScanner.nextLine();
+        System.out.println("Enter the year of the movie:");
+        int year = movieScanner.nextInt();
+        movieScanner.nextLine();
+
+        Movie movie = new Movie(title, director, rating, year);
+        movieLibrary.addMovie(movie);
+        System.out.println("Movie added.");
+    } catch (Exception e) {
+        System.out.println("Invalid input. Please enter the correct data types.");
+        movieScanner.nextLine();
+    }
+}
+```
+
+Now, when I make the same error as above I get this output:
+
+```
+>> Enter the title of the movie:
+<< Alien
+>> Enter the director of the movie:
+<< Ridley Scott
+>> Enter the rating of the movie:
+<< not a Double // This causes an error
+>> Invalid input. Please enter the correct data types. // From catch block
+```
+
+Lets move on to the next method; `rateMovie()`:
+
+```
+private static void rateMovie() {
+
+}
+```
+
+In our `MovieLibrary` class we have a `rateMovie()` method which takes an instance of `Movie` and the new rating. We can use the `MovieLibrary.getMovieByTitle()` method to find the instance:
+
+<details>
+<summary>rateMovie() method title</summary>
+
+```
+private static void rateMovie() {
+    System.out.println("Enter the title of the movie:");
+    String title = movieScanner.nextLine();
+    Movie movie = movieLibrary.getMovieByTitle(title);
+}
+```
+
+</details>
+
+<br>
+
+Then we can scan in the new rating:
+
+<details>
+<summary>rateMovie() method rating</summary>
+
+```
+private static void rateMovie() {
+    System.out.println("Enter the title of the movie:");
+    String title = movieScanner.nextLine();
+    Movie movie = movieLibrary.getMovieByTitle(title);
+
+    System.out.println("Enter the new rating of the movie:");
+    double rating = movieScanner.nextDouble();
+    movieScanner.nextLine();
+}
+```
+
+</details>
+
+<br>
+
+And finally we can call the `rateMovie()` method:
+
+<details>
+<summary>rateMovie() method call</summary>
+
+```
+private static void rateMovie() {
+    System.out.println("Enter the title of the movie:");
+    String title = movieScanner.nextLine();
+    Movie movie = movieLibrary.getMovieByTitle(title);
+
+    System.out.println("Enter the new rating of the movie:");
+    double rating = movieScanner.nextDouble();
+    movieScanner.nextLine();
+
+    movieLibrary.rateMovie(movie, rating);
+    System.out.println("Movie rating updated.");
+}
+```
+
+</details>
+
+<br>
+
+The logic is complete now we can give it some error handling. Nest in in a `try/catch` and use an if statement to check whether the instance of `Movie` is `null`:
+
+<details>
+<summary>rateMovie() method call</summary>
+
+```
+private static void rateMovie() {
+    try {
+       System.out.println("Enter the title of the movie:");
+       String title = movieScanner.nextLine();
+
+       Movie movie = movieLibrary.getMovieByTitle(title);
+       if (movie == null) {
+           System.out.println("Movie not found.");
+           return;
+       }
+
+        System.out.println("Enter the new rating of the movie:");
+        double rating = movieScanner.nextDouble();
+        movieScanner.nextLine();
+
+        movieLibrary.rateMovie(movie, rating);
+        System.out.println("Movie rating updated.");
+    } catch (Exception e) {
+        System.out.println("Invalid input. Please enter the correct data types.");
+        movieScanner.nextLine();
+    }
+}
+```
+
+</details>
+
+<br>
+
+Excellent, now lets move onto the next method:
