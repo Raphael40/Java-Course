@@ -16,7 +16,6 @@ Learn Java and Spring Boot by taking this free interactive course. Each module h
 | [Java Fundamentals](./java-fundamentals/01_classes.md) | Classes, Variables, Operators, Conditionals, Arrays, Loops |
 | [Advanced Fundamentals](./04_advanced-fundamentals/)   | Class Methods, Testing(JUnit), HashMaps                    |
 | Project - build Library App                            | Walk along project                                         |
-| Intro to Spring Boot                                   | What is Spring Boot?                                       |
 
 ## Assessments
 

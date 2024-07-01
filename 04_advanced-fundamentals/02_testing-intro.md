@@ -134,13 +134,11 @@ Now we are going to test the same `Calculator` class but with JUnit. Since we ar
 
 ![project structure](images/Java-add-library.JPG)
 
-A second panel will appear allowing us to download a library from the Maven Repository. In te searchbar we want to enter: `org.junit.jupiter:junit-jupiter:5.9.1`.
+A second panel will appear allowing us to download a library from the Maven Repository. In the searchbar we want to enter: `org.junit.jupiter:junit-jupiter:5.9.1`.
 
 ![JUnit](images/Java-JUnit.JPG)
 
 Then press `ok` and `apply` in the bottom right of the project structure window to apply our changes. We have now added the JUnit:5.9.1 library to our project. On the left hand toolbar you will be able to see the junit.jupiter directory in the External Libraries dropdown.
-
-Later we will learn about a build tool called `Maven` that will streamline this process.
 
 ### First Test
 
@@ -152,12 +150,14 @@ If the Tests Root option is not available in the tab you can got to `File > Proj
 
 Your file structure should look like this:
 
-- src
-  - main
-    - java
-      - Calculator
-      - MyCalculatorTest
-- test
+```
+-   src
+    -   main
+        -   java
+            -   Calculator
+            -   MyCalculatorTest
+-   test
+```
 
 To create our first test we can first go back to our `Calculator` class and put the curser on the word `Calculator` used as the class declaration.
 
@@ -171,15 +171,17 @@ Now if we go to our `test` directory we can see that a new `CalculatorTest` clas
 
 Our file structure now looks like this:
 
-- src
-  - main
-    - java
-      - Calculator
-      - MyCalculatorTest
-- test
-  - main
-    - java
-      - CalculatorTest
+```
+-   src
+    -   main
+        -   java
+            -   Calculator
+            -   MyCalculatorTest
+-   test
+    -   main
+        -   java
+            -   CalculatorTest
+```
 
 Inside our `CalculatorTest.java` file we can see this code:
 
@@ -806,6 +808,6 @@ I'm sure you're sick of testing. In the next section we're going to look at anot
 
 ---
 
-resources:
+Resources:
 Prepare IntelliJ for testing: https://www.jetbrains.com/help/idea/testing.html
 Make JUnit test in IntelliJ: https://www.jetbrains.com/help/idea/junit.html#intellij

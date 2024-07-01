@@ -18,3 +18,5 @@ Start a new JUnit test project by typing @test or adding JUnit manually
 
 If I change the name of a class test will it be unable to find the 
 class it's testing without an import statement?
+
+Add tests for final project
