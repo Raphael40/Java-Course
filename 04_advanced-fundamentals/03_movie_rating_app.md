@@ -932,7 +932,7 @@ We can improve our code with error handling. If we make an error such as enterin
 >> Process finished with exit code 1
 ```
 
-However, if we use a `try/catch` statement we can try to run a a block of code and if it throws an exception we can catch the error and execute a second block of code instead:
+However, if we use a `try/catch` statement we can catch the error and run our own code block instead.
 
 ```
 try {
@@ -943,7 +943,30 @@ catch(Exception e) {
 }
 ```
 
-This will come in handy later on to avoid exiting our program if we make an error.
+Depending what we want to do you we could either throw an error with your our message:
+
+```
+import java.util.InputMismatchException;
+
+...
+
+catch (Exception e) {
+    throw new InputMismatchException("Invalid input. Please enter the correct data types.");
+}
+```
+
+Or we can print a message to the output:
+
+```
+catch (Exception e) {
+    movieScanner.nextLine(); // In case there is a newline left in the input
+    System.out.println("Invalid input. Please enter the correct data types.");
+}
+```
+
+The difference is, in the first example a custom Exception will be thrown and we quit the program. In the second example we print our custom error message to the output but the program keeps running.
+
+In our case it would be more suitable to use the latter and I will use that throughout the program. However, for this method I am going to throw an Exception just because I want to show you how to test for it later.
 
 Incorporate a `try/catch` like this:
 
@@ -965,8 +988,12 @@ private static void addMovie() {
         movieLibrary.addMovie(movie);
         System.out.println("Movie added.");
     } catch (Exception e) {
-        System.out.println("Invalid input. Please enter the correct data types.");
-        movieScanner.nextLine();
+        throw new InputMismatchException("Invalid input. Please enter the correct data types.");
+        // This will quit the program, which we can test later.
+
+        // movieScanner.nextLine();
+        // System.out.println("Invalid input. Please enter the correct data types.");
+        // This line is more suitable and will be used inn the other methods.
     }
 }
 ```
@@ -1077,8 +1104,8 @@ private static void rateMovie() {
         movieLibrary.rateMovie(movie, rating);
         System.out.println("Movie rating updated.");
     } catch (Exception e) {
-        System.out.println("Invalid input. Please enter the correct data types.");
         movieScanner.nextLine();
+        System.out.println("Invalid input. Please enter the correct data types.");
     }
 }
 ```
@@ -1131,8 +1158,8 @@ private static void listSingleMovie() {
             System.out.println("Movie not found.");
         }
     } catch (Exception e) {
-        System.out.println("Invalid input. Please enter the correct data types.");
         movieScanner.nextLine();
+        System.out.println("Invalid input. Please enter the correct data types.");
     }
 }
 ```
@@ -1205,8 +1232,8 @@ private static void listAllMovies() {
             count++;
         }
     } catch (Exception e) {
-        System.out.println("Invalid input. Please enter the correct data types.");
         movieScanner.nextLine();
+        System.out.println("Invalid input. Please enter the correct data types.");
     }
 }
 ```
@@ -1287,8 +1314,8 @@ public static void removeMovie() {
             System.out.println("Movie not found.");
         }
     } catch (Exception e) {
-        System.out.println("Invalid input. Please enter the correct data types.");
         movieScanner.nextLine();
+        System.out.println("Invalid input. Please enter the correct data types.");
     }
 }
 ```
@@ -1635,7 +1662,159 @@ And finally we can call our assertions on the output String:
     }
 ```
 
-Try running it, ayour test should pass. If there are any issues try recompiling both this `MainTest` file and the `Main` file by going to `build > Recompile MainTest.java`.
+Try running it, your test should pass. If there are any issues try recompiling both this `MainTest` file and the `Main` file by going to `build > Recompile MainTest.java`.
+
+Before we test for the error there are a few things we need to setup to prevent our tests from intefering with one another. They all use the same `SystemIn` and `SystemOut` so we can clear these in a beforeEach:
+
+```
+@BeforeEach
+void setUp() {
+    systemIn.setInputStream(new ByteArrayInputStream(new byte[0]));
+    systemOut.clear();
+}
+```
+
+It also helps to have our tests run in order one by one. If they are computing at the same time with the same `System` it can cause errors. We can use `@TestMethodOrder(MethodOrderer.OrderAnnotation.class)` to set an order for our methods to run.
+
+And then specify the order of each test using `@Order(1) > @Order(2)...` like this:
+
+```
+@ExtendWith(SystemStubsExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class) // Add this
+class MainTest {
+
+    ...
+
+    @Test
+    @Order(1) // Add this
+    @DisplayName("addMovie test")
+    void addMovie() throws Exception {
+        ...
+    }
+}
+```
+
+Now that we're fairly sure our tests are isolated. Lets create the `addMovieError()` method:
+
+```
+@Test
+@Order(2) // Runs second
+@DisplayName("addMovieError test")
+void addMovieError() throws Exception { // throws Exception
+
+    // The inputs String is different, it enters "not a double" instead of a double
+    String inputs = "test title\ntest director\nnot a double\n2021\n";
+    // This is the same
+    systemIn.setInputStream(new ByteArrayInputStream(inputs.getBytes()));
+
+    // these two reflection lines are the same
+    Method method = Main.class.getDeclaredMethod("addMovie");
+    method.setAccessible(true);
+
+}
+```
+
+Now things are going to chang, remember how in the `Movie` test we had to use a lambda to control when the error was caught. We do a similar thing here. We still use `assertThrows(ExceptionType.class, Lambda method)` but this time with extra steps.
+
+Instead of `InputMismatchException.class` we use `InvocationTargetException.class` because this is the type of Exception thrown by `method.invoke()` when the method it invokes throws an error. It acts as a wrapper containig our actual error inside. We pass `() -> method.invoke(null)` as our lambda.
+
+We can save this to an instance of the Throwable class which is the superclass of all errors and exceptions in Java:
+
+```
+Throwable thrown = assertThrows(InvocationTargetException.class, () -> method.invoke(null));
+```
+
+And then make a new instance of the `Throwable` class to save our actual error using `.getCause()` which returns the cause of an exception or error:
+
+```
+Throwable actualError = thrown.getCause();
+```
+
+Now we have our error saved to a variable we can make our assertions. First to make sure we actually have an `InputMistmatchException` we can use `assertInstanceOf`:
+
+```
+assertInstanceOf(InputMismatchException.class, actualError);
+```
+
+And second to check for our message we can use `assertEquals`:
+
+```
+assertEquals("Invalid input. Please enter the correct data types.", actualError.getMessage().trim());
+```
+
+Your entire `MainTest` file should now look like this:
+
+```
+package main.java;
+
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.io.ByteArrayInputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.InputMismatchException;
+
+import uk.org.webcompere.systemstubs.jupiter.SystemStubsExtension;
+import uk.org.webcompere.systemstubs.jupiter.SystemStub;
+import uk.org.webcompere.systemstubs.stream.SystemIn;
+import uk.org.webcompere.systemstubs.stream.SystemOut;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(SystemStubsExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class MainTest {
+
+    @SystemStub
+    private SystemIn systemIn;
+
+    @SystemStub
+    private SystemOut systemOut;
+
+    @BeforeEach
+    void setUp() {
+        systemIn.setInputStream(new ByteArrayInputStream(new byte[0]));
+        systemOut.clear();
+    }
+
+    @Test
+    @Order(1)
+    @DisplayName("addMovie test")
+    void addMovie() throws Exception {
+        String inputs = "test title\ntest director\n5.0\n2021\n";
+        systemIn.setInputStream(new ByteArrayInputStream(inputs.getBytes()));
+
+        Method method = Main.class.getDeclaredMethod("addMovie");
+        method.setAccessible(true);
+        method.invoke(null);
+
+        String output = systemOut.getText();
+        assertTrue(output.contains("Enter the title of the movie:"));
+        assertTrue(output.contains("Enter the director of the movie:"));
+        assertTrue(output.contains("Enter the rating of the movie:"));
+        assertTrue(output.contains("Enter the year of the movie:"));
+        assertTrue(output.contains("Movie added."));
+    }
+
+    @Test
+    @Order(2)
+    @DisplayName("addMovieError test")
+    void addMovieError() throws Exception {
+        String inputs = "test title\ntest director\nnot a double\n2021\n";
+        systemIn.setInputStream(new ByteArrayInputStream(inputs.getBytes()));
+
+        Method method = Main.class.getDeclaredMethod("addMovie");
+        method.setAccessible(true);
+
+        Throwable thrown = assertThrows(InvocationTargetException.class, () -> method.invoke(null));
+        Throwable actualError = thrown.getCause();
+
+        assertInstanceOf(InputMismatchException.class, actualError);
+        assertEquals("Invalid input. Please enter the correct data types.", actualError.getMessage().trim());
+    }
+}
+```
 
 We are going to finish here as this shoud give you a good idea of how to test a private method with user input. If you wish to see the rest of the testing file feel free to check out my code in the [completed repo]().
 
