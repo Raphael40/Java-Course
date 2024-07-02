@@ -22,8 +22,6 @@ I personally decided to learn it because I am job hunting. I know `JavaScript` f
 
 In the next section we are going to download the required software needed to run Java on our machine.
 
-[next](../setup/README.md)
-
 ## References
 
 https://www.java.com/en/download/help/whatis_java.html
@@ -32,4 +30,4 @@ https://azure.microsoft.com/en-gb/resources/cloud-computing-dictionary/what-is-j
 
 ---
 
-## [back](../README.md)
+[back](../README.md) <span style="float: right;">[next](../02_setup/01_setup.md)</span>

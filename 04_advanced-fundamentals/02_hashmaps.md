@@ -184,4 +184,6 @@ class Main {
 }
 ```
 
-## Set?
+### Hashmap <String Object>
+
+[back](../README.md) <span style="float: right;">[next](03_class-methods.md)</span>

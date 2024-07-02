@@ -20,3 +20,5 @@ If I change the name of a class test will it be unable to find the
 class it's testing without an import statement?
 
 Add tests for final project
+
+IntelliJ comnpiles files into the out/ directory
