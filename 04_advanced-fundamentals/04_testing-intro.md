@@ -812,4 +812,4 @@ Resources:
 Prepare IntelliJ for testing: https://www.jetbrains.com/help/idea/testing.html
 Make JUnit test in IntelliJ: https://www.jetbrains.com/help/idea/junit.html#intellij
 
-[back](../README.md) <span style="float: right;">[next](../05_project/01_movie_rating_app.md.md)</span>
+[back](../README.md) <span style="float: right;">[next](../05_project/01_movie_rating_app.md)</span>
