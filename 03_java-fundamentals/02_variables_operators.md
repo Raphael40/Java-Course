@@ -1,18 +1,20 @@
-# Java fundamentals - variables, operators, conditionals
+# Java fundamentals - variables & operators
 
-If you are completely new to programming it is important to understand some primitve and non-primitive data types as well as the variables they are assigned to.
+In this section:
 
-Variables are containers for storing data values of any data type (both primitive and non-primitive).
+-   Data types
+-   Assigning data values to Variables
+-   What make Java striongly typed
 
-## Primitive data types
+### Primitive data types
 
-There are eight primitive data types in Java: `byte`, `short`, `int`, `boolean`, `char`, `long`, `float`, and `double`
+There are eight primitive data types in Java:
 
-When working with numbers we can use `byte`, `short`, `int`, and `long` where `byte` but `int` is the default.
+Numeric data types include: `byte`, `short`, `int` and `long`. `int` is the default.
 
-With decimal point numbers, `float` and `double` are both available with `double` being the default.
+With decimal point numbers: `float` and `double` are both available with `double` being the default.
 
-The difference between all of these terms comes down to the range of numbers they can handle and the amount of storage they take up.
+The difference between all of these types comes down to the range of numbers they can handle and the amount of storage they take up.
 
 Following this we have `char` which is used to store a single character in single quotes. It is closely linked with the non-primitive data type; `String`, which is used for a sequence of characters. So in this case, 'H' (single quotes) is a `char` and "Hi" (double quotes) is a `String`. You will normally use `String`.
 
@@ -20,6 +22,7 @@ The final primitive data type is `boolean` which is used to represent either `tr
 
 ### Variable declaration
 
+Variables are containers for storing data values of any data type (both primitive and non-primitive).
 A variable can store a data value which is helpful for reusing specific values, configuring programs to use dynamic data values, and improving readability throughout your code.
 
 In order to assign a data to a variable, you have to state the data type and the name of the variable, then use the `=` assignment operator and provide the value.
@@ -27,21 +30,23 @@ In order to assign a data to a variable, you have to state the data type and the
 For example, to assign the number 10 to a variable I would do this:
 
 ```
-int myNumber = 10
+int myNumber = 10;
 ```
 
 Where `int` is the data type, myNumber is the name of the variable and it is being assigned the number 10 with the = assignment operator.
 
+The line always end with a semi-colon `;`
+
 The rest follow the same pattern:
 
 ```
-float myFLoat = 2.5;
+double myDouble = 2.5;
 char myLetter = 'B';
 boolean myBoolean = true;
-String myString = 'Kitten';
+String myString = "Kitten";
 ```
 
-Refactor your `FirstClass` so that the text we printed is saved to a variable called `text`, then print the variable and run the code.
+In the Java-fundamentals-starter branch of the supporting repo create a new package; `main/java/variables_and_operators` and inside it create a class called Variables.
 
 It should look like this:
 
@@ -49,29 +54,65 @@ It should look like this:
 <summary>FirstCLass</summary>
 
 ```
-public class FirstClass {
+public class Variables {
     public static void main(String[] items) {
-        String text = "This is my first class";
-        System.out.println(text);
+
     }
 }
 ```
 
 </details>
 
-### Strings
-
-**Strings** are essentially objects of the `String` class which are represented by a collection of characters surrounded by double quotes. Because a `String` is a class it also has many methods which can be called upon it for a variety of results:
+Copy this code into the file and run it:
 
 ```
-String cat = "caspian";
+int myNumber = 10;
+double myDouble = 2.5;
+char myLetter = 'B';
+boolean myBoolean = true;
+String myString = "Kitten";
+
+System.out.println(myNumber);
+System.out.println(myDouble);
+System.out.println(myLetter);
+System.out.println(myBoolean);
+System.out.println(myString);
+```
+
+### More on Strings
+
+**Strings** are non-primitive because they are objects of a `String` class which are represented by a collection of characters surrounded by double quotes. Because a `String` is a class it also has many methods which can be called upon it for a variety of results:
+
+Create a `Cat` class in the variables_and_operators package.
+
+<details>
+<summary>FirstCLass</summary>
+
+```
+public class Cat {
+    public static void main(String[] items) {
+
+    }
+}
+```
+
+</details>
+
+Here are som epopular methods to call on strings:
+
+```
+String cat = "Caspian"; // Assign a String to a variable
+
+// This will print the number of characters in a String
 System.out.println(cat.length());
 >> 7
 
+// This one converts every character to a capital letter
 System.out.println(cat.toUpperCase());
 >> "CASPIAN";
 
-System.out.println(cat.startsWith("c"));
+// This returns true if a String starts with a specific letter.
+System.out.println(cat.startsWith("C")); // We can pass values into the parenthesis of many methods
 >> true;
 
 ```
@@ -79,39 +120,37 @@ System.out.println(cat.startsWith("c"));
 You can also concatenate multiple Strings together. This can be confusing because it uses the `+` operator for concatenation rather than addition.
 
 ```
-String h = "Hello";
-String t = "there";
+String cat = "Caspian";
+String meow = "Meow";
 
-String greeting = h + " " + t + ", General Grevious"; // Add empty strings for spaces
+// Add the strings together
+String greeting = cat + " says " + meow + "!";
 System.out.println(greeting);
->> "Hello there, General Grevious"
+>> Caspian says Meow!
 
 // You can accomplish the same thing with the concat() method
-String greeting2 = h.concat(" ").concat(t).concat(", General Grevious");
->> "Hello there, General Grevious"
+String greeting2 = cat.concat(" says ").concat(meow).concat("!");
+System.out.println(greeting2);
+>> Caspian says Meow!
 
-// Add a String and an int
+// We can even concatenate a String and an int
 String fiftyStr = "50";
 int fiftyInt = 50;
 String fiftyFifty = fiftyStr + fiftyInt; // ints get coerced into Strings when concatenated
+System.out.println(fiftyFifty);
 >> "5050"
 ```
 
-Curious what happens when you add Strings and chars? Check section 5 of this [article](https://www.baeldung.com/java-char-vs-string)
-
-If you have to write text that uses double or single quotes you can use an escape character:
+If you have to write text that uses double or single quotes you can use an escape character `\`:
 
 ```
-String sentence = "And then main character said "This cereal is really tasty"";
+String sentence = "And then cat went "Meow"";
 >> error
 
-// Double quote escape with a backslash
-String sentence = "And then the main character said \"This cereal is really tasty\"";
+ // Double quote escape with a backslash
+String sentence = "And then the cat went \"Meow\"";
 System.out.println(sentence);
->> And then the main character said "This cereal is really tasty"
-
-// Also used for single quotes
-String text2 = "it\'s ok";
+>> And then the cat went "Meow"
 
 // to write an actual backslash in Java use two of them
 String backslash = "This is a backslash - \\";
@@ -123,7 +162,9 @@ System.out.println(backslash);
 
 Operators are sets of syntax used to conduct operations between different pieces of data.
 
-The assignment operator `=` is used to assign values to varibales. If a variable has already been declared you can use the `+=` or `-=` operators to reassign it with a new value:
+Create an `Operators` class with a `main` method.
+
+The assignment operator `=` is used to assign values to varibales. We can also use `+=` or `-=` operators to reassign it with a new value:
 
 ```
 int five = 5;
@@ -239,6 +280,10 @@ System.out.println(!(five == six));
 ```
 
 Now that we know how to compare values we can put it into practice. In the next section we'll look at conditionals which depend on these operations.
+
+## References
+
+https://www.baeldung.com/java-char-vs-string
 
 ---
 

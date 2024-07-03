@@ -1,15 +1,19 @@
 # Java fundamentals - Hello World, classes
 
-In this module we're going to run our first program and look at the fundementals of Java including classes.
+In this section:
+
+-   Run our first class
+-   Create our first class
+-   Learn about classes
+
+## Hello World
 
 To follow along you will need to clone this repo which contains some starter code and a completed repo:
 https://github.com/Raphael40/Java-Course-Support-Repo
 
-## Hello World
+Once cloned, open the Java-Course-Support-Repo in IntelliJ.
 
-Once cloned you can open the Java-Course-Support-Repo directory in IntelliJ.
-
-At this point you will see a .idea directory has been made. IntelliJ creates this directory to store settings, version controls, and metadata about your project. You can ignore it.
+At this point you will see a `.idea` directory has been made. IntelliJ creates this directory to store settings, version controls, and metadata about your project. You can ignore it.
 
 Next we want to switch onto the java-fundamentals branch as shown in the image below.
 
