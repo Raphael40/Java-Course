@@ -1,22 +1,30 @@
 # Conditionals
 
-### if statements
+In this section:
+
+-   If statements
+-   If else statements
+-   Else If statements
+
+### If statements
 
 One of the best places to see these operators in action is inside an `if` statement. The concept of the `if` statement is simple, we are writing a program that will execute a specific code block **if** a specified condition evaluates to true.
 
 The syntax is as follows:
 
 ```
-if (condition) {
+if (condition is true) {
     // Execute code in curly backets
 }
 ```
 
-Here are a few examples:
+Create a new package called `conditionals` and add a `Conditionals` class with a `main` method.
+
+Try running the following code:
 
 ```
 // If 10 is greater than 5
-int ten = 10
+int ten = 10;
 
 if (ten > 5) {
     System.out.println("I printed because it is true that 10 is greater than 5");
@@ -27,9 +35,9 @@ Any operation that evaluates to a boolean can be used as the conditional of an i
 
 ```
 int five = 5;
-String six = 'six';
+String six = "six";
 
-if (five < 20 && six == 'six') {
+if (five < 20 && six == "six") {
     System.out.println("Logical operators can be used in if statements");
 }
 

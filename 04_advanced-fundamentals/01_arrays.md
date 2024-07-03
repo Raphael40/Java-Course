@@ -1,6 +1,12 @@
 # Java fundamentals - advanced data Types
 
-In this section we'll cover the following: Arrays, ArrayLists loops
+In this section:
+
+-   Arrays
+-   ArrayLists
+-   Iterating through Arrays and ArrayLists
+
+Switch onto the `advanced-fundamentals-starter` branch
 
 ## Arrays
 
@@ -13,7 +19,7 @@ There are two ways to initialize an `Array`:
 ```
 <type>[] name = {1, 2, 3}
 
-public class DataStructuresArray {
+public class Array {
     public static void main(String[] args) {
 
         String[] workdays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
@@ -71,11 +77,6 @@ To create an `ArrayList` we have to import it at the top of our page and then de
 import java.util.ArrayList;
 
 ArrayList<Type> arrayListName= new ArrayList<>();
-
-// Which becomes
-
-ArrayList<Integer> myNumbers= new ArrayList<>();
-
 ```
 
 Note that we use `Integer` rather than `int`. This is because you cannot declare an ArrayList with a primitive data type so we use `Integer` which is the parent class of `int` instead.
@@ -83,40 +84,48 @@ Note that we use `Integer` rather than `int`. This is because you cannot declare
 ### add(), get(), set(), remove(), clear()
 
 ```
-ArrayList<String> anime = new ArrayList<>();
+import java.util.ArrayList;
 
-// Add new items:
-anime.add("Naruto");
-anime.add("One Piece");
-anime.add("Full Mental Alchemist Brotherhood");
+public class AnimeArrayList {
+    public static void main(String[] args) {
+        ArrayList<String> anime = new ArrayList<>();
 
-System.out.println("ArrayList: " + anime);
->> ArrayList: [Naruto, One Piece, Full Metal Alchemist Brotherhood]
+        // Add new items:
+        anime.add("Naruto");
+        anime.add("One Piece");
+        anime.add("Full Metal Alchemist Brotherhood");
 
-// Get a single item by index
-int indexOfNaruto = anime.indexOf("Naruto");
-System.out.println("Naruto: " + anime.get(indexOfNaruto));
->> Naruto: Naruto
+        System.out.println("ArrayList: " + anime);
+        >> Anime: [Naruto, One Piece, Full Metal Alchemist Brotherhood]
 
-// Set method for replacing an item by index
-int indexOfOnePiece = anime.indexOf("One Piece");
-anime.set(indexOfOnePiece, "Hunter X Hunter")
-System.out.println("ArrayList: " + anime);
->> ArrayList: [Naruto, Hunter X Hunter, Full Metal Alchemist Brotherhood]
+        // Get a single item by index
+        int indexOfNaruto = anime.indexOf("Naruto");
+        System.out.println("Naruto: " + anime.get(indexOfNaruto));
+        >> Naruto: Naruto
 
-// Remove elements by index
-int indexOfFMAB = anime.indexOf("Full Metal Alchemist Brotherhood");
-String fMAB = anime.remove(indexOfFMAB);
-System.out.println("Updated ArrayList: " + anime);
->> Updated ArrayList: [Naruto, Hunter X Hunter]
-System.out.println("Removed Element: " + fMAB);
->> Removed Element: Full Metal Alchemist Brotherhood
+        // Set method for replacing an item by index
+        int indexOfOnePiece = anime.indexOf("One Piece");
+        anime.set(indexOfOnePiece, "Hunter X Hunter")
+        System.out.println("Anime: " + anime);
+        >> Anime: [Naruto, Hunter X Hunter, Full Metal Alchemist Brotherhood]
 
-// Clear the array of all elements.
-ArrayList.clear()
-System.out.println("ArrayList count: " + anime.size());
->> : ArrayList count: 0
-// Note that .size() returns the number of elements and .length returns the capacity
+        // Remove elements by index
+        int indexOfFMAB = anime.indexOf("Full Metal Alchemist Brotherhood");
+        String fMAB = anime.remove(indexOfFMAB);
+        System.out.println("Updated Anime: " + anime);
+        >> Updated Anime: [Naruto, Hunter X Hunter]
+        System.out.println("Removed Element: " + fMAB);
+        >> Removed Element: Full Metal Alchemist Brotherhood
+
+        // Clear the array of all elements.
+        anime.clear()
+        System.out.println("Anime count: " + anime.size());
+        >> : Anime count: 0
+        // Note that .size() returns the number of elements and .length returns the capacity
+
+    }
+}
+
 ```
 
 If you know the exact length of your data then you should always use an `Array` as it takes less memory and improves performance. Otherwise, use an `ArrayList`.
@@ -151,7 +160,7 @@ However, Java gives us another, easier way to iterate through Arrays:
 String[] chocolates = {"Dairy Milk", "Crunchie", "Yorkie", "Freddo"};
 
 for (String chocolate : chocolates) {
-System.out.println(chocolate);
+    System.out.println(chocolate);
 }
 
 >> Dairy Milk
@@ -165,12 +174,6 @@ In this example we can access a chocolate for each iteration of the chocolates a
 ## Set?
 
 ## Exercises
-
-Make a loop that prints `helloWorld` five times
-
-Make a for loop that prints only even numbers up to 20
-
-Make a while loop that prints multiples of 5 up to 100
 
 Given an `Array` of names, print out `Good morning ` + name
 

@@ -22,3 +22,5 @@ class it's testing without an import statement?
 Add tests for final project
 
 IntelliJ comnpiles files into the out/ directory
+
+Make sure you have build project automatically ticked
