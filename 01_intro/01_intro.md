@@ -10,13 +10,11 @@ Java is a free programming language and computing platform released by Sun Micro
 
 It is used to build websites, games, artificial intelligence, and much more.
 
-It also has a framework called `Spring Boot` which makes developing REST APIs (backends) significantly easier. We will use Spring Boot in the second half of the course.
+It also has many frameworks including `Spring Boot` which makes developing apps from scratch significantly easier.
 
 ### Why learn Java
 
 Java is a good choice for beginners because not only is it relatively easy to learn compared to similar languages such as C and C++ but it's also extremely popular. A search for Java on job sites such as Indeed or LinkedIn yields thousands of results. It can also be run easily on Windows, Linux, and iOS.
-
-I personally decided to learn it because I am job hunting. I know `JavaScript` fairly well and wanted to learn a good backend langauge to use instead of `Node.js`. I hoped this would make me more employable to a wider range or roles. But who knows!
 
 ---
 

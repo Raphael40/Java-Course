@@ -7,7 +7,7 @@ https://github.com/Raphael40/Java-Course-Support-Repo
 
 ## Hello World
 
-Once cloned you can open the Java-Course-Support-Repo directory in InteliJ.
+Once cloned you can open the Java-Course-Support-Repo directory in IntelliJ.
 
 At this point you will see a .idea directory has been made. IntelliJ creates this directory to store settings, version controls, and metadata about your project. You can ignore it.
 
@@ -15,17 +15,27 @@ Next we want to switch onto the java-fundamentals branch as shown in the image b
 
 ![checkout](images/Java-checkout.JPG)
 
-Alternatively you can open a terminal in Intellij by going to the Menu then View >> Tool Windows >> Terminal (Or in VSCode Terminal >> New Terminal) and running this command: `git switch java-fundamentals`.
+Alternatively you can open a terminal in Intellij by going to the Menu then _View >> Tool Windows >> Terminal_ and running this command: `git switch java-fundamentals`.
 
-Some new files will appear. Go to the `src/main/java` directory and open the `HelloWorld` file inside. If you have installed the JDK correctly a green arrow will be visible on the toolbar at the top of the interface and in the gutter to the left hand side of the code. Select one of the green arrows, the text `Hello, World!` should be printed to the screen.
+Some new files will appear. One of them is the blue `src` folder where we store our Java code. IntelliJ will not run any files that are outside whatever folder is marked blue folder.
+
+Go to the `src/main/java` directory and open the `HelloWorld` file inside. You may be prompted to setup your JDK, when you have, a green arrow will be visible on the toolbar at the top of the interface and in the gutter to the left hand side of the code.
+
+Select one of the green arrows to run your program, the text `Hello, World!` will be printed to the screen.
 
 Congratulations, you have run your first Java program.
 
-[image here of printed code]
+```
+>> Hello World!
+```
+
+In this course I will use **>>** to represent output.
+
+You may notice that an orange `/out` directory has been created, this is where IntelliJ has stored our compiled code. We don't want to push `out/` to GitHub so make sure it's in the .gitignore.
 
 ### Run with the terminal
 
-If you are having issues running it with VSCode or simply prefer running code with the terminal, you can. In your terminal navigate to `/src/`. You will have to type two commands, one to compile the file and another to run it.
+It is also useful to know how to run Java code from the terminal. In your terminal navigate to `/src/`. You will have to type two commands, one to compile the file and another to run it.
 
 The first command is `javac` which compiles the java into bytecode.
 
@@ -80,13 +90,13 @@ Inside the main() method we have the following code `System.out.println("Hello, 
 
 ### Making a new class
 
-Now we're going to make our own class. Right click on the `/main/java` directory then select new >> Java Class
+Now we're going to make our own class. First lets create a `package` to store it in. A package is like a folder or directory for grouping Java classes together. Right click on the `/main/java` directory then select _New >> package_ and name your new package `classes`.
 
-![class](images/Java-class.JPG)
+Then right click on the newly created package and select _New >> Java Class_. Name your class `FirstClass`. Classes always start with a capitalised first letter.
 
-It will promt you to name your class, we're going to call ours `FirstClass`. As you can tell, class naming convention uses a capitalised first letter.
+![FirstClass](images/FirstClass.png)
 
-You should have this:
+If you open your new file you should see this:
 
 ```
 package main.java;
@@ -95,11 +105,12 @@ public class FirstClass {
 }
 ```
 
-If you want to use the Terminal you can:
+Also, iff you wanted to create a class with the Terminal you would do this:
 
 ```
 cd src/main/java
-touch FirstClass.java
+mkdir classes
+touch classes/FirstClass.java
 ```
 
 And fill the the code above manually.
@@ -138,13 +149,17 @@ public class FirstClass {
 
 Once again we can run this code by selecting the green arrow or compiling it in the terminal using `javac`.
 
+```
+>> This is my first class!
+```
+
 ## References
 
 https://www.digitalocean.com/community/tutorialspublic-static-void-main-string-args-java-main-method
 
 ---
 
-In the next section we're going to look at basic syntax including Variables, operators and conditionals.
+In the next section we're going to look at Variables, Operators.
 
 ---
 
