@@ -804,7 +804,7 @@ class HospitalTest {
 
 </details>
 
-I'm sure you're sick of testing. In the next section we're going to look at another data structure called HashMaps.
+This marks the end of the testing intro and advanced fundamentals section. In the next section we are going to start our first project.
 
 ---
 
@@ -812,4 +812,4 @@ Resources:
 Prepare IntelliJ for testing: https://www.jetbrains.com/help/idea/testing.html
 Make JUnit test in IntelliJ: https://www.jetbrains.com/help/idea/junit.html#intellij
 
-[back](../README.md) <span style="float: right;">[next](../05_project/01_movie_rating_app.md)</span>
+[back](../README.md) <span style="float: right;">[next](../05_project/01_Movie-class.md)</span>

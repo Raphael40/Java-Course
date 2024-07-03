@@ -148,4 +148,4 @@ In the next section we're going to look at basic syntax including Variables, ope
 
 ---
 
-[back](../README.md) <span style="float: right;">[next](02_variables_operators_conditionals.md)</span>
+[back](../README.md) <span style="float: right;">[next](02_variables_operators.md)</span>

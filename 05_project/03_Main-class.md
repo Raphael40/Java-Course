@@ -1,454 +1,3 @@
-# Movie Rating Command Line App
-
-In this section we are going to build an app that will put everything we have learned so far to practice. A completed repo is available, however there is no starter repo since we will be starting from scratch.
-
-First we are going to quickly look at one more class from the `java.util` package called `Scanner`
-
-## Scanner
-
-The idea of the `Scanner` class is to get user input from the command line as long as it is a primitive value (or String).
-
-By importing Scanner at the top of our file:
-
-```
-import java.util.Scanner;
-```
-
-We are able to use methods of the Scanner class such as `nextBoolean()`, `nextLine()`, and `nextInt()`.
-
-To use it we have to create a new `Scanner` object and then use the scanner methods to save user input to a variable:
-
-```
-class Main {
-  public static void main(String[] args) {
-    Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
-
-    System.out.println("Enter name here:");
-    String name = myObj.nextLine();  // nextLine() takes a user input of String
-    // At this point I will be prompted to type a value into the CLI. I enter "Jonny"
-
-    System.out.println("Username is: " + name);  // Now we can use the value
-  }
-}
-
->> Username is: Jonny
-```
-
-**Note** how we declare a new Scanner object with `System.in` to receive a value from the command line. This is just like how we use System.out to print lines (println) to the console.
-
-We are going to use Scanner to enter movies into our movie rating app.
-
-## Movie Rating App
-
-### Create a new project
-
-From the menu select File >> New >> Project and a New Project panel will appear. **Name** your project `movie-rating-app` and save it to a location of your choice. Leave Create Git repository selected and select IntelliJ as your Build system. **Unselect** Add sample code and leave Generate code with onboarding tips unselected.
-
-![new-project-panel](./images/Java-project-setup.png)
-
-This should create a new module containing a .idea directory, a .gitignore file, a project-name.iml file and an src directory.
-
-Inside the src directory we are going to create a `main` package and inside that we are going to create a `java` package. Your path should be movie-rating-app/src/main/java.
-
-Next we want to setup our testing suite. Just like we did in the previous section. Install the `JUnit Jupiter` library into your project using this prompt `org.junit.jupiter:junit-jupiter:5.9.1`, thenj add a test directory and make it the testing root. Then add your main.java packages.
-
-It should look like this:
-
-```
--   Movie-Rating-App
-    -   .idea
-    -   out
-    -   src
-        -   main
-            -   java
-                -   Calculator
-                -   MyCalculatorTest
-    -   test
-        -   main
-            -   java
-    -   .gitignore
-    -   movie-rating-app.iml
-```
-
-If you are planning to push any of your work to github it's common to add the `.iml` file and `.idea` directory to the `.gitignore` file.
-
-### Movie Class
-
-To make this app we are going to create three classes; `Movie`, `MovieLibrary`, and `Main` which will have our `main` method and act as our user interface. Our `Movie` class represents a single movie. Each instance of `Movie` requires a title for identification and a rating. We can also add a Director and release year to be more informative. The Movie class will have methods to return each value and a method to set a new rating.
-
-Right click on `main.java` package and select New > Java Class:
-
-```
-package main.java;
-
-public class Movie {
-
-}
-```
-
-Next add the instance fields (title(String), director(String), rating(Double), year(int)) and `Movie` constructor method:
-
-<details>
-<summary>constructor</summary>
-
-```
-package main.java;
-
-public class Movie {
-  private String title;
-  private String director;
-  private double rating;
-  private int year;
-
-  public Movie(String title, String director, double rating, int year) {
-      this.title = title;
-      this.director = director;
-      this.rating = rating;
-      this.year = year;
-  }
-}
-```
-
-</details>
-
-<br>
-
-Now we can add our methods. Create 4 methods; `getTitle()`, `getDirector()`, `getRating()` and `getYear()`. Each one just needs to return its corresponding value.
-
-<details>
-<summary>getMethods()</summary>
-
-```
-public String getTitle() {
-    return title;
-}
-
-public String getDirector() {
-    return director;
-}
-
-public double getRating() {
-    return rating;
-}
-
-public int getYear() {
-    return year;
-}
-```
-
-</details>
-
-<br>
-
-And lastly we can add our setRatings() method. It takes a rating and reassigns the instance rating to the value:
-
-<details>
-<summary>setRating()</summary>
-
-```
-public void setRating(double rating) {
-    this.rating = rating;
-}
-```
-
-</details>
-
-<br>
-
-The `this` keyword ensures it will only update the value of the instance that the method is called on.
-
-We ought to add in some error handling here to ensure that users can only submit a rating greater than 0 and less than 10.
-
-We can use the `throw` keyword to give the user a custom error like this:
-
-`throw new Exception("Desciption");`
-
-Use an if statement to enforce an `IllegalArgumentException` in the setRating() method:
-
-<details>
-<summary>setRating()</summary>
-
-```
-public void setRating(double rating) {
-    if (rating < 0 || rating > 10) {
-        throw new IllegalArgumentException("Rating must be between 0 and 10");
-    }
-    this.rating = rating;
-}
-```
-
-</details>
-
-<br>
-
-You can view a list of built in Exceptions [here](https://www.tutorialspoint.com/java/java_builtin_exceptions.htm) and there are also some you can import.
-
-Thats all we need for the movie class. Your code should look like this:
-
-<details>
-<summary>Movie Class</summary>
-
-```
-package main.java;
-
-public class Movie {
-private String title;
-private String director;
-private double rating;
-private int year;
-
-    public Movie(String title, String director, double rating, int year) {
-        this.title = title;
-        this.director = director;
-        this.rating = rating;
-        this.year = year;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setRating(double rating) {
-        if (rating < 0 || rating > 10) {
-            throw new IllegalArgumentException("Rating must be between 0 and 10");
-        }
-        this.rating = rating;
-    }
-
-}
-
-```
-
-</details>
-
-### MovieLibrary class
-
-Now we can make our `MovieLibrary` class. As a library we want to be able to add a movie to the library, rate a movie in the library, get a single movie from the library, and get all the movies from the library. We can use an ArrayList to store our movies.
-
-Lets create our `MovieLibrary` class and give it a constructor that initialises the `movies` ArrayList.
-
-<details>
-<summary>MovieLibrary class & constructor</summary>
-
-```
-package main.java;
-
-import java.util.ArrayList;
-
-public class MovieLibrary {
-    private ArrayList<Movie> movies;
-
-    public MovieLibrary() {
-        movies = new ArrayList<Movie>();
-    }
-
-}
-```
-
-</details>
-
-<br>
-
-Next we can make our addMovie method. In this method we want to be able to add an instance of our `Movie` to the `movies` ArrayList. However, the instance of `Movie` is going to be created in the `UI` and then passed into the method:
-
-```
-UI class
-
-private static MovieLibrary movieLibrary = new MovieLibrary();
-
-...
-
-main() {}
-
-'''
-
-someMethod() {
-  Movie hotFuzz = new Movie("Hot Fuzz", "Edgar Wright", 9.2, 2007)
-
-  movieLibrary.addMovie(hotFuzz) // This method
-}
-```
-
-Therefore our `addMovie()` method just need to take a movie and add it to the list:
-
-<details>
-<summary>addMovie() method</summary>
-
-```
-public void addMovie(Movie movie) {
-    movies.add(movie); // adds hotFuzz to the library
-}
-```
-
-</details>
-
-<br>
-
-Now we want a method to set a new rating for the movie. This method will be slightly more complex because we have to find the movie in the ArrayList before we update the rating.
-
-The `rateMovie()` method will take in a movie (String) and rating (Double) and loop through the `movies` ArrayList. If it finds an instance of movie with an equal title, then is will call the `setRating()` method of the movie instance.
-
-<details>
-<summary>rateMovie() method</summary>
-
-```
-public void rateMovie(String title, double rating) {
-
-    // Find the movie by title and set its rating
-    for (Movie movie : movies) {
-        if (movie.getTitle().equalsIgnoreCase(title)) { // Ignoring case, are two Strings equal?
-            movie.setRating(rating); // If so then we set the new rating
-            break; // And break out of the loop
-        }
-    }
-
-    System.out.println("Movie not found.");
-}
-```
-
-</details>
-
-<br>
-
-The method above should set a new rating however it doesn't return anything so how can we check that our rating has actually been updated. We can make a `getMovieByTitle(String title)` method.
-
-Once again we want to loop through the `movies` ArrayList, and when we get a match we return the movie:
-
-<details>
-<summary>getMovie() method</summary>
-
-```
-public void getMovieByTitle(String title, double rating) {
-
-    // Find the movie by title and return it
-    for (Movie movie : movies) {
-        if (movie.getTitle().equalsIgnoreCase(title)) {
-            return movie;
-        }
-    }
-
-    System.out.println("Movie not found.");
-}
-```
-
-**Note** return automatically breaks our the of loop so we don't need to use the `break` keyword.
-
-</details>
-
-<br>
-
-Notice that both our `rateMovie()` method and our `getMovieByTitle()` methods use the same loop. In order to avoid repetition we can refactor our `rateMovie()` method to take an instance of `Movie` rather than a title and call the `getMovieByTitle()` method from our main class:
-
-<details>
-<summary>rateMovie() method refactor</summary>
-
-```
-public void rateMovie(Movie movie, double rating) {
-    movie.setRating(rating);
-}
-```
-
-</details>
-
-<br>
-
-If this doesn't make sense at the moment it should click when we get to the `Main` class.
-
-Now lets create a method called `removeMovie()` which takes and deletes an instance of the `Movie` class from the ArrayList and returns nothing:
-
-<details>
-<summary>removeMovie() method</summary>
-
-```
-public void removeMovie(Movie movie) {
-    movies.remove(movie);
-}
-```
-
-</details>
-
-<br>
-
-And finally we can make a `getMovies` method to return the entire library. For this we can just return the ArrayList.
-
-<details>
-<summary>getMovies() method</summary>
-
-```
-public ArrayList<Movie> getMovies() {
-    return movies;
-}
-```
-
-</details>
-
-<br>
-
-Thats all we need for the `MovieLibrary` class, your code should look like this:
-
-<details>
-<summary>MoviesLibrary class completed</summary>
-
-```
-package main.java;
-
-import java.util.ArrayList;
-
-public class MovieLibrary {
-    private ArrayList<Movie> movies;
-
-    public MovieLibrary() {
-        movies = new ArrayList<Movie>();
-    }
-
-    public void addMovie(Movie movie) {
-        movies.add(movie);
-    }
-
-    public void rateMovie(String title, double rating) {
-        Movie movie = getMovieByTitle(title);
-        if (movie != null) {
-            movie.setRating(rating);
-        } else {
-            System.out.println("Movie not found.");
-        }
-    }
-
-    public void removeMovie(Movie movie) {
-        movies.remove(movie);
-    }
-
-    public ArrayList<Movie> getMovies() {
-        return movies;
-    }
-
-    public Movie getMovieByTitle(String title) {
-        for (Movie movie : movies) {
-            if (movie.getTitle().equalsIgnoreCase(title)) {
-                return movie;
-            }
-        }
-        return null;
-    }
-}
-```
-
-</details>
-
-<br>
-
 ### Main class
 
 Finally, we can do the `Main` class. This is where we will implement the built in `Scanner` class to get input from the user.
@@ -1146,11 +695,372 @@ public static void main(String[] args) {
 }
 ```
 
-With that our code is completed. Run the Main class and try your app!
+### MainTest class
 
-In the next section we will use JUnit to write tests for our app.
+Testing `Main` is more advanced and therefore completely **optional**
+
+It is challenging for two reasons; first the methods are private and not directly accessibly by JUnit. Second we are using the `Scanner` class which takes user input.
+
+To test a private method we can use something called `reflection` which provides methods that can bypass security measures to inspect and modify code.
+
+To use reflection add this at the top of your test file: `import java.lang.reflect.Method;`.
+
+Regarding Scanner, we can use a library that lets create mock user input called [System Stubs](https://github.com/webcompere/system-stubs).
+
+Download the core dependency: `uk.org.webcompere:system-stubs-core:2.1.6`
+Then download the JUnit 5 extension: `uk.org.webcompere:system-stubs-jupiter:2.1.6`
+
+Lets do the first one bit by bit. If we generate our `MainTest` file and then import DisplayName and reflection we should have something like this:
+
+```
+package main.java;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Method;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class MainTest {
+
+    @Test
+    @DisplayName("addMovie test")
+    void addMovie() throws Exception {
+
+    }
+}
+```
+
+Notice that we declare the test method with `throws Exception`. This is required because we are using `reflection` which can cause Exceptions when bypassing security measures to call the addMovie() method.
+
+Now we want to retrieve our addMovies() method. We can use `Main.class` to target the Main class and then call `.getDeclaredMethod()` which is used to obtain a specified method. In order to save the value we need to assign it to a variable of the `Method` class. Our code will look like this:
+
+```
+Method method = Main.class.getDeclaredMethod("addMovie");
+```
+
+Now that we have our `addMovie()` method assigned to a variable we can call methods on it.
+
+The `setAccessible()` method sets the access of a method, true is `public` and false is `private`. We will set it to true:
+
+```
+Method method = Main.class.getDeclaredMethod("addMovie");
+method.setAccessible(true);
+```
+
+And now we want to call the method. We can do this with the `invoke()` method:
+
+```
+Method method = Main.class.getDeclaredMethod("addMovie");
+method.setAccessible(true);
+method.invoke(null);
+```
+
+It takes a `null` argument because it is expecting an instance to be passed in but since `addMovies()` is static it doesn't have an instance so we just pass in null.
+
+Now that we are able to call our method we want to test it. Lets first setup a mock input for System.in:
+
+```
+@Test
+@DisplayName("addMovie test")
+void addMovie() throws Exception {
+ String inputs = "test title\ntest director\n5.0\n2021\n"; // add this line
+
+
+   Method method = Main.class.getDeclaredMethod("addMovie");
+   method.setAccessible(true);
+   method.invoke(null);
+
+}
+```
+
+Now we can use System Stubs. We want to create a global mock SystemIn object. To do this we have to add the extension to our test class:
+
+```
+import org.junit.jupiter.api.extension.ExtendWith; // Required
+
+import uk.org.webcompere.systemstubs.jupiter.SystemStubsExtension; // extension
+
+...
+
+@ExtendWith(SystemStubsExtension.class) // Add the extension
+class MainTest {
+    ...
+}
+```
+
+Now that we have done this we can add a `@SystemStub` annotation field which we can use to inject a stubbed instance of SystemIn into our test class:
+
+```
+import uk.org.webcompere.systemstubs.jupiter.SystemStubsExtension;
+import uk.org.webcompere.systemstubs.jupiter.SystemStub; // import SystemStub
+import uk.org.webcompere.systemstubs.stream.SystemIn; // and SystemIn
+
+...
+
+@ExtendWith(SystemStubsExtension.class)
+class MainTest {
+
+    @SystemStub //
+    private SystemIn systemIn;
+
+    ...
+}
+```
+
+Now that everything is setup we can return to the method. We want to set our inputs to the SystemIn inputStream.
+
+Normally the System class works by taking inputs and converting them to `bytes` which is a unit of digital information.
+
+We can use `ByteArrayInputStream(byte[] args)` to create an input stream of bytes but it expects and Array of bytes to be passed into it so first we have to convert our `inputs` String into a bytes Array using `inputs.getBytes()`.
+
+And finally we pass the InputStream bytes object into our actual System input stream using `setInputStream()`:
+
+```
+import java.io.ByteArrayInputStream; // add this to your imports
+
+@ExtendWith(SystemStubsExtension.class)
+class MainTest {
+
+    @SystemStub //
+    private SystemIn systemIn;
+
+    @Test
+    @DisplayName("addMovie test")
+    void addMovie() throws Exception {
+
+    String inputs = "test title\ntest director\n5.0\n2021\n"; // add this line
+
+    systemIn.setInputStream(new ByteArrayInputStream(inputs.getBytes())); // add this line
+
+    Method method = Main.class.getDeclaredMethod("addMovie");
+    method.setAccessible(true);
+    method.invoke(null);
+
+    }
+
+}
+
+```
+
+With that we have successfully created a fake user input.
+
+In order to confirm that our method has run successfully we make our assertions on the lines printed to `System.out`:
+
+First we can add a new stub for SystemOut:
+
+```
+import uk.org.webcompere.systemstubs.stream.SystemOut; // import at the top
+
+@SystemStub
+private SystemOut systemOut;
+```
+
+Then we can call the SystemOut.getText() method to retrieve all text printed to the output:
+
+```
+@Test
+    @DisplayName("addMovie test")
+    void addMovie() throws Exception {
+
+    String inputs = "test title\ntest director\n5.0\n2021\n";
+
+    systemIn.setInputStream(new ByteArrayInputStream(inputs.getBytes()));
+
+    Method method = Main.class.getDeclaredMethod("addMovie");
+    method.setAccessible(true);
+    method.invoke(null);
+
+    String output = systemOut.getText(); // add this line
+    }
+```
+
+And finally we can call our assertions on the output String:
+
+```
+@Test
+    @DisplayName("addMovie test")
+    void addMovie() throws Exception {
+
+    String inputs = "test title\ntest director\n5.0\n2021\n";
+
+    systemIn.setInputStream(new ByteArrayInputStream(inputs.getBytes()));
+
+    Method method = Main.class.getDeclaredMethod("addMovie");
+    method.setAccessible(true);
+    method.invoke(null);
+
+    String output = systemOut.getText();
+    assertTrue(output.contains("Enter the title of the movie:"));
+    assertTrue(output.contains("Enter the director of the movie:"));
+    assertTrue(output.contains("Enter the rating of the movie:"));
+    assertTrue(output.contains("Enter the year of the movie:"));
+    assertTrue(output.contains("Movie added."));
+    }
+```
+
+Try running it, your test should pass. If there are any issues try recompiling both this `MainTest` file and the `Main` file by going to `build > Recompile MainTest.java`.
+
+Before we test for the error there are a few things we need to setup to prevent our tests from intefering with one another. They all use the same `SystemIn` and `SystemOut` so we can clear these in a beforeEach:
+
+```
+@BeforeEach
+void setUp() {
+    systemIn.setInputStream(new ByteArrayInputStream(new byte[0]));
+    systemOut.clear();
+}
+```
+
+It also helps to have our tests run in order one by one. If they are computing at the same time with the same `System` it can cause errors. We can use `@TestMethodOrder(MethodOrderer.OrderAnnotation.class)` to set an order for our methods to run.
+
+And then specify the order of each test using `@Order(1) > @Order(2)...` like this:
+
+```
+@ExtendWith(SystemStubsExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class) // Add this
+class MainTest {
+
+    ...
+
+    @Test
+    @Order(1) // Add this
+    @DisplayName("addMovie test")
+    void addMovie() throws Exception {
+        ...
+    }
+}
+```
+
+Now that we're fairly sure our tests are isolated. Lets create the `addMovieError()` method:
+
+```
+@Test
+@Order(2) // Runs second
+@DisplayName("addMovieError test")
+void addMovieError() throws Exception { // throws Exception
+
+    // The inputs String is different, it enters "not a double" instead of a double
+    String inputs = "test title\ntest director\nnot a double\n2021\n";
+    // This is the same
+    systemIn.setInputStream(new ByteArrayInputStream(inputs.getBytes()));
+
+    // these two reflection lines are the same
+    Method method = Main.class.getDeclaredMethod("addMovie");
+    method.setAccessible(true);
+
+}
+```
+
+Now things are going to chang, remember how in the `Movie` test we had to use a lambda to control when the error was caught. We do a similar thing here. We still use `assertThrows(ExceptionType.class, Lambda method)` but this time with extra steps.
+
+Instead of `InputMismatchException.class` we use `InvocationTargetException.class` because this is the type of Exception thrown by `method.invoke()` when the method it invokes throws an error. It acts as a wrapper containig our actual error inside. We pass `() -> method.invoke(null)` as our lambda.
+
+We can save this to an instance of the Throwable class which is the superclass of all errors and exceptions in Java:
+
+```
+Throwable thrown = assertThrows(InvocationTargetException.class, () -> method.invoke(null));
+```
+
+And then make a new instance of the `Throwable` class to save our actual error using `.getCause()` which returns the cause of an exception or error:
+
+```
+Throwable actualError = thrown.getCause();
+```
+
+Now we have our error saved to a variable we can make our assertions. First to make sure we actually have an `InputMistmatchException` we can use `assertInstanceOf`:
+
+```
+assertInstanceOf(InputMismatchException.class, actualError);
+```
+
+And second to check for our message we can use `assertEquals`:
+
+```
+assertEquals("Invalid input. Please enter the correct data types.", actualError.getMessage().trim());
+```
+
+Your entire `MainTest` file should now look like this:
+
+```
+package main.java;
+
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.io.ByteArrayInputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.InputMismatchException;
+
+import uk.org.webcompere.systemstubs.jupiter.SystemStubsExtension;
+import uk.org.webcompere.systemstubs.jupiter.SystemStub;
+import uk.org.webcompere.systemstubs.stream.SystemIn;
+import uk.org.webcompere.systemstubs.stream.SystemOut;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(SystemStubsExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class MainTest {
+
+    @SystemStub
+    private SystemIn systemIn;
+
+    @SystemStub
+    private SystemOut systemOut;
+
+    @BeforeEach
+    void setUp() {
+        systemIn.setInputStream(new ByteArrayInputStream(new byte[0]));
+        systemOut.clear();
+    }
+
+    @Test
+    @Order(1)
+    @DisplayName("addMovie test")
+    void addMovie() throws Exception {
+        String inputs = "test title\ntest director\n5.0\n2021\n";
+        systemIn.setInputStream(new ByteArrayInputStream(inputs.getBytes()));
+
+        Method method = Main.class.getDeclaredMethod("addMovie");
+        method.setAccessible(true);
+        method.invoke(null);
+
+        String output = systemOut.getText();
+        assertTrue(output.contains("Enter the title of the movie:"));
+        assertTrue(output.contains("Enter the director of the movie:"));
+        assertTrue(output.contains("Enter the rating of the movie:"));
+        assertTrue(output.contains("Enter the year of the movie:"));
+        assertTrue(output.contains("Movie added."));
+    }
+
+    @Test
+    @Order(2)
+    @DisplayName("addMovieError test")
+    void addMovieError() throws Exception {
+        String inputs = "test title\ntest director\nnot a double\n2021\n";
+        systemIn.setInputStream(new ByteArrayInputStream(inputs.getBytes()));
+
+        Method method = Main.class.getDeclaredMethod("addMovie");
+        method.setAccessible(true);
+
+        Throwable thrown = assertThrows(InvocationTargetException.class, () -> method.invoke(null));
+        Throwable actualError = thrown.getCause();
+
+        assertInstanceOf(InputMismatchException.class, actualError);
+        assertEquals("Invalid input. Please enter the correct data types.", actualError.getMessage().trim());
+    }
+}
+```
+
+We are going to finish here as this shoud give you a good idea of how to test a private method with user input. If you wish to see the rest of the testing file feel free to check out my code in the [completed repo]().
 
 ---
+
+That is the end of this module and hopefully you have a good sense for the langauge and how it is used.
+
+In module 2 we will start building more ambitious apps with Spring Boot.
 
 ## References
 
@@ -1162,4 +1072,4 @@ https://www.programiz.com/java-programming/bytearrayinputstream
 
 ---
 
-[back](../README.md) <span style="float: right;">[next](02_test_movie_rating_app.md)</span>
+## [back](../README.md)
