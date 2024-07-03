@@ -186,4 +186,76 @@ class Main {
 
 ### Hashmap <String Object>
 
+We can use <String Object> to create a HashMap with values of different types:
+
+```
+HashMap<String, Object> objectMap = new HashMap<>();
+objectMap.put("key1", "value1"); // String value
+objectMap.put("key2", 123); // Integer value
+
+String[] values = {"Integer", "String", "Boolean"};
+objectMap.put("key3", values) // You can also have an Array value
+
+// To retrieve this Array we can use get to save the Array to a varibale
+String[] retrievedValues = (String[]) objectMap.get("key3") // An then do what we want with our Array
+
+System.out.println(retrievedMap[0])
+>> Integer
+
+// declare a new HashMap names placesMap and make it a value for objectMap
+HashMap<String, String> placesMap = new HashMap<>();
+placesMap.put("city", "New York");
+placesMap.put("zipcode", "10001");
+
+objectMap.put("key4", placesMap)
+
+// We can retreive the inner HashMap from the outer HashMap in a similar way:
+HashMap<String, String> retrievedMap = (HashMap<String, String>) objectMap.get("key4");
+
+System.out.println(retrievedMap.get(city))
+>> New York
+```
+
+### HashMap Runnable/Lambda
+
+We can use <String Runnable> to store a lambda in our HashMap.
+
+A Lambda is an anonymous method that can be passed as a parameter or stored in a varaiable.
+
+```
+Runnable runnable = () -> System.out.println("Hello, Lambda!");
+
+// Use the run() method to call it
+System.out.println(runnable.run())
+>> Hello, Lambda!
+```
+
+We can use a built in method called forEach which takes a lambda and applies it for each element of an ArrayList:
+
+```
+ArrayList<String> names = new ArrayList("Alice", "Bob", "Charlie");
+names.forEach(name -> System.out.println("Hello, " + name));
+
+>> Hello, Alice
+>> Hello, Bob
+>> Hello, Charlie
+```
+
+And of course we can use lambdas in HashMaps:
+
+```
+HashMap<String, Runnable> actions = new HashMap<>();
+
+actions.put("sayHello", () -> System.out.println("Hello, World!"));
+actions.put("sayGoodbye", () -> System.out.println("Goodbye, World!"));
+
+actions.get("sayHello").run();
+actions.get("sayGoodbye").run();
+
+>> Hello, World!
+>> Goodbye, World!
+```
+
+This is all we're going to cover for HashMaps, in the next section we'll examine class methods.
+
 [back](../README.md) <span style="float: right;">[next](03_class-methods.md)</span>
