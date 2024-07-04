@@ -17,15 +17,15 @@ Learn Java and Spring Boot by taking this free interactive course. Each module h
 | [Setup](./02_setup/01_setup.md)                               | Install Java, Java Development Kit && Intellij     |
 | [Java Fundamentals](./03_java-fundamentals/01_classes.md)     | Classes, Variables, Operators, Conditionals, Loops |
 | [Advanced Fundamentals](./04_advanced-fundamentals/arrays.md) | Arrays, Hashmaps, Class Methods, Testing(JUnit)    |
-| [Project](./05_project/01_Movie-class.md)                     | Java OOP, Scanner, JUnit                           |
+| [Movie App Project](./05_project/01_Movie-class.md)           | Java OOP, Scanner, JUnit                           |
 
-### Module 2
+### Module 2 - coming soon
 
-| Sections                                | Contents           |
-| --------------------------------------- | ------------------ |
-| [Intro to Spring](./01_intro/README.md) | Maven, Spring Boot |
+| Sections        | Contents           |
+| --------------- | ------------------ |
+| Intro to Spring | Maven, Spring Boot |
 
-## Assessments
+## Assessments - coming soon
 
 | Assessment      | Suggested Time |
 | --------------- | -------------- |
