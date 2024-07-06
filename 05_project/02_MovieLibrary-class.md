@@ -2,12 +2,19 @@
 
 ### MovieLibrary class
 
-Now we can make our `MovieLibrary` class. As a library we want to be able to add a movie to the library, rate a movie in the library, get a single movie from the library, and get all the movies from the library. We can use an ArrayList to store our movies.
+Now we can make our `MovieLibrary` class. As a library we want to be able to add a movie to the library, rate a movie in the library, get a single movie from the library, and get all the movies from the library.
 
-Lets create our `MovieLibrary` class and give it a constructor that initialises the `movies` ArrayList.
+```
+package main.java;
 
-<details>
-<summary>MovieLibrary class & constructor</summary>
+public class MovieLibrary {
+
+}
+```
+
+We can use a data structure to store our movies, an `ArrayList` would be suitable for storing each instance of `Movie`.
+
+At this point it would be natural to implement an `ArrayList` instance field and a constructor that initialises it when an instance of Movie`Library` is created:
 
 ```
 package main.java;
@@ -15,18 +22,50 @@ package main.java;
 import java.util.ArrayList;
 
 public class MovieLibrary {
-    private ArrayList<Movie> movies;
+    private ArrayList<Movie> movies; // Declare a variable of ArrayList type capable of holding Movie objects
 
+    constructor
     public MovieLibrary() {
-        movies = new ArrayList<Movie>();
+        this.movies = new ArrayList<Movie>(); Assign it as a new Arraylist object
     }
 
 }
 ```
 
-</details>
+However, this would actually be bad practice because `ArrayList` is an implementation of the `List` interface and we would be limiting ourselves to just the `ArrayList` implementation of `List`. Therefore it would be better to do something like this:
 
-<br>
+```
+package main.java;
+
+import java.util.List; // import list
+import java.util.ArrayList;
+
+public class MovieLibrary {
+    private List<Movie> movies; // Declare a variable of List type capable of holding Movie objects
+
+    constructor
+    public MovieLibrary() {
+        this.movies = new ArrayList<Movie>(); Assign it as a new Arraylist object
+    }
+
+}
+```
+
+But technically we are still limiting ourselves an the `ArrayList` so we can impove this further by declaring what type of `List` to implement outsdie of the class and passing it in with dependency injection:
+
+```
+package main.java;
+
+import java.util.List;
+
+final private List<Movie> movies;
+
+    public MovieLibrary(List<Movie> movies) { // Pass in a `List` object from outside
+        this.movies = movies; // Assign it
+    }
+```
+
+With this technique our code it much more flexible and if we wanted to change the type of `List` interface from `ArrayList` to `LinkedList` we can do that easily from the main class without having to refactor this class at all. This we become clear when we develop the `Main` class in the next section.
 
 Next we can make our addMovie method. In this method we want to be able to add an instance of our `Movie` to the `movies` ArrayList. However, the instance of `Movie` is going to be created in the `UI` and then passed into the method:
 
@@ -55,7 +94,7 @@ Therefore our `addMovie()` method just need to take a movie and add it to the li
 
 ```
 public void addMovie(Movie movie) {
-    movies.add(movie); // adds hotFuzz to the library
+    this.movies.add(movie); // adds hotFuzz to the library
 }
 ```
 
@@ -74,7 +113,7 @@ The `rateMovie()` method will take in a movie (String) and rating (Double) and l
 public void rateMovie(String title, double rating) {
 
     // Find the movie by title and set its rating
-    for (Movie movie : movies) {
+    for (Movie movie : this.movies) {
         if (movie.getTitle().equalsIgnoreCase(title)) { // Ignoring case, are two Strings equal?
             movie.setRating(rating); // If so then we set the new rating
             break; // And break out of the loop
@@ -100,7 +139,7 @@ Once again we want to loop through the `movies` ArrayList, and when we get a mat
 public void getMovieByTitle(String title, double rating) {
 
     // Find the movie by title and return it
-    for (Movie movie : movies) {
+    for (Movie movie : this.movies) {
         if (movie.getTitle().equalsIgnoreCase(title)) {
             return movie;
         }
@@ -140,7 +179,7 @@ Now lets create a method called `removeMovie()` which takes and deletes an insta
 
 ```
 public void removeMovie(Movie movie) {
-    movies.remove(movie);
+    this.movies.remove(movie);
 }
 ```
 
@@ -148,14 +187,14 @@ public void removeMovie(Movie movie) {
 
 <br>
 
-And finally we can make a `getMovies` method to return the entire library. For this we can just return the ArrayList.
+And finally we can make a `getMovies` method to return the entire library. For this we can just return the List.
 
 <details>
 <summary>getMovies() method</summary>
 
 ```
-public ArrayList<Movie> getMovies() {
-    return movies;
+public List<Movie> getMovies() {
+    return this.movies;
 }
 ```
 
@@ -171,38 +210,33 @@ Thats all we need for the `MovieLibrary` class, your code should look like this:
 ```
 package main.java;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MovieLibrary {
-    private ArrayList<Movie> movies;
+    final private List<Movie> movies;
 
-    public MovieLibrary() {
-        movies = new ArrayList<Movie>();
+    public MovieLibrary(List<Movie> movies) {
+        this.movies = movies;
     }
 
     public void addMovie(Movie movie) {
-        movies.add(movie);
+        this.movies.add(movie);
     }
 
-    public void rateMovie(String title, double rating) {
-        Movie movie = getMovieByTitle(title);
-        if (movie != null) {
-            movie.setRating(rating);
-        } else {
-            System.out.println("Movie not found.");
-        }
+    public void rateMovie(Movie movie, double rating) {
+        movie.setRating(rating);
     }
 
     public void removeMovie(Movie movie) {
-        movies.remove(movie);
+        this.movies.remove(movie);
     }
 
-    public ArrayList<Movie> getMovies() {
-        return movies;
+    public List<Movie> getMovies() {
+        return this.movies;
     }
 
     public Movie getMovieByTitle(String title) {
-        for (Movie movie : movies) {
+        for (Movie movie : this.movies) {
             if (movie.getTitle().equalsIgnoreCase(title)) {
                 return movie;
             }
@@ -210,6 +244,7 @@ public class MovieLibrary {
         return null;
     }
 }
+
 ```
 
 </details>
@@ -218,7 +253,7 @@ public class MovieLibrary {
 
 ### MovieLibraryTest class
 
-Generate your `MovieLibraryTest` class, it should look likt this:
+Generate your `MovieLibraryTest` class and give it the boilerplate:
 
 ```
 package main.java;
@@ -257,18 +292,19 @@ class MovieLibraryTest {
 }
 ```
 
-Import BeforeEach and DisplayName at the top. We want to create an instance of `MovieLibrary` and `Movie` in our BeforeEach block:
+Import BeforeEach at the top. We want to create an instance of `MovieLibrary` and an empty `ArrayList` in our BeforeEach block. We need to pass our `ArrayList` into the `MovieLibrary` instance as an argument:
 
 ```
+import java.util.ArrayList;
+
 class MovieLibraryTest {
 
-    private MovieLibrary testMovieLibrary;
-    private Movie testMovie;
+    private MovieLibrary testMovieLibrary; // MovieLibrary instance
 
     @BeforeEach
     void setUp() {
-        testMovieLibrary = new MovieLibrary();
-        testMovie = new Movie("test title", "test director", 5.0, 2021);
+        ArrayList<Movie> moviesArrayList = new ArrayList<>(); // initialise ArrayList
+        testMovieLibrary = new MovieLibrary(moviesArrayList); // initialise MovieLibrary instance with ArrayList
     }
 
    @Test
@@ -282,7 +318,7 @@ class MovieLibraryTest {
 
 We can start writing our `addMovie Test` which takes an instance of `Movie`. We have to use the `getMovies()` method to check that it has been added because the add method doesn't return anything and the `movies` ArrayList is private.
 
-Call the `addMovie` method then check that the size of the ArrayList returned by `getMovies()` is 1:
+Call the `addMovie` method then check that the size of the ArrayList returned by `getMovies()` is 2:
 
 <details>
 <summary>addMovie test</summary>
@@ -312,6 +348,8 @@ The `rateMovie test` adds a movie with the `addMovie()` method, then calls the `
 @Test
 @DisplayName("rateMovie test")
 void rateMovie() {
+    Movie testMovie = new Movie("test title", "test director", 6.0, 2022);
+
     testMovieLibrary.addMovie(testMovie);
 
     testMovieLibrary.rateMovie(testMovie, 4.0);
@@ -331,13 +369,15 @@ Our `removeMovie test` should have two assertions. We call `addMovie()` to add o
 
 ```
 @Test
-@DisplayName("rateMovie test")
-void rateMovie() {
+@DisplayName("removeMovie test")
+void removeMovie() {
+    Movie testMovie = new Movie("test title", "test director", 6.0, 2022);
+
     testMovieLibrary.addMovie(testMovie);
 
-    testMovieLibrary.rateMovie(testMovie, 4.0);
+    testMovieLibrary.removeMovie(testMovie);
 
-    assertEquals(4.0, testMovie.getRating());
+    assertEquals(0, testMovieLibrary.getMovies().size());
 }
 ```
 
@@ -352,13 +392,15 @@ Our `getMovies test` looks pretty much the same as our `addMovie test` but we ca
 
 ```
 @Test
-@DisplayName("rateMovie test")
-void rateMovie() {
+@DisplayName("getMovies test")
+void getMovies() {
+    Movie testMovie = new Movie("test title", "test director", 6.0, 2022);
     testMovieLibrary.addMovie(testMovie);
 
-    testMovieLibrary.rateMovie(testMovie, 4.0);
+    Movie testMovie2 = new Movie("test title 2", "test director 2", 6.0, 2022);
+    testMovieLibrary.addMovie(testMovie2);
 
-    assertEquals(4.0, testMovie.getRating());
+    assertEquals(2, testMovieLibrary.getMovies().size());
 }
 ```
 
@@ -375,6 +417,7 @@ In our `getMovieByTitle test` we will add a movie and then assert that it has be
 @Test
 @DisplayName("getMovieByTitle test")
 void getMovieByTitle() {
+    Movie testMovie = new Movie("test title", "test director", 6.0, 2022);
     testMovieLibrary.addMovie(testMovie);
 
     assertEquals(testMovie, testMovieLibrary.getMovieByTitle("test title"));
