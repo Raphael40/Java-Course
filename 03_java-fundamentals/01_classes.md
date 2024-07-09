@@ -13,7 +13,7 @@ https://github.com/Raphael40/Java-Course-Support-Repo
 
 Once cloned, open the Java-Course-Support-Repo in IntelliJ.
 
-At this point you will see a `.idea` directory has been made. IntelliJ creates this directory to store settings, version controls, and metadata about your project. You can ignore it.
+At this point you will see a `.idea` directory has been made. IntelliJ creates this directory to store settings, version controls, and metadata about your project such as the JDK you are using and which directories are marked as source or test root.
 
 Next we want to switch onto the java-fundamentals branch as shown in the image below.
 
@@ -35,7 +35,7 @@ Congratulations, you have run your first Java program.
 
 In this course I will use **>>** to represent output.
 
-You may notice that an orange `/out` directory has been created, this is where IntelliJ has stored our compiled code. We don't want to push `out/` to GitHub so make sure it's in the .gitignore.
+You may notice that an orange `/out` directory has been created, this is where IntelliJ has stored our compiled code. Any directory that is marked orange is marked as excluded meaning IntelliJ will not index them and they will not appear in search results. We don't want to push `out/` to GitHub so make sure it's in the .gitignore.
 
 ### Run with the terminal
 

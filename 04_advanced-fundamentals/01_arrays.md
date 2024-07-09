@@ -1,4 +1,4 @@
-# Java fundamentals - advanced data Types
+# Java advanced fundamentals - Data Structures
 
 In this section:
 

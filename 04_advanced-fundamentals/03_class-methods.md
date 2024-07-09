@@ -40,7 +40,7 @@ public class Dog {
   public static void main(String[] args) {
     // call our static method
     Dog.woof();
-    Dog.bark("Bark Bark")
+    Dog.bark("Bark Bark");
   }
 
   // a static method that prints a String
@@ -126,7 +126,7 @@ public class Dog {
 
   public static void main(String[] args) {
     // instantiate our class
-    Dog boris = new Dog("Pug");
+    Dog boris = new Dog("Boris", "Pug");
     // call the breed method
     boris.breed();
   }
@@ -201,7 +201,7 @@ public class Game {
   }
 
   public static void welcome() {
-    System.out.println("Welcome to the Game!")
+    System.out.println("Welcome to the Game!");
   }
 
 }
@@ -223,7 +223,7 @@ public class Game {
   }
 
   public static void welcome() {
-    System.out.println("Welcome to the Game!")
+    System.out.println("Welcome to the Game!");
   }
 
 }
@@ -235,7 +235,7 @@ Now we are able to specify our game when we create an instance. Update your main
 public static void main(String[] args) {
   Game.welcome();
 
-  Game sudoku = new Game("Sudoku")
+  Game sudoku = new Game("Sudoku");
 }
 ```
 
@@ -250,7 +250,7 @@ public class Game {
   public Game(String name) {
     this.name = name;
     this.score = 0;
-    Since the score always starts at 0 we can hard code it instead of passing it in as an argument.
+    // Since the score always starts at 0 we can hard code it instead of passing it in as an argument.
   }
 ...
 }
@@ -270,7 +270,7 @@ Now lets add another static method called displayScore so we can actually view o
 
 ```
 public void displayScore() {
-  System.out.println("Your score for ".concat(this.name) + " is ".concat(this.score))
+  System.out.println("Your score for ".concat(this.name) + " is " + this.score)
 }
 ```
 
@@ -285,19 +285,19 @@ public class Game {
   public Game(String name) {
     this.name = name;
     this.score = 0;
-    Since the score always starts at 0 we can hard code it instead of passing it in as an argument.
+    // Since the score always starts at 0 we can hard code it instead of passing it in as an argument.
   }
 
   public static void main(String[] args) {
     Game.welcome();
 
-    Game sudoku = new Game("Sudoku")
-    suduku.addPoints(20)
-    sudoku.displayPoints()
+    Game sudoku = new Game("Sudoku");
+    sudoku.addPoints(20);
+    sudoku.displayScore();
   }
 
   public static void welcome() {
-    System.out.println("Welcome to the Game!")
+    System.out.println("Welcome to the Game!");
   }
 
   public void addPoints(int points) {
@@ -305,7 +305,7 @@ public class Game {
   }
 
   public void displayScore() {
-    System.out.println("Your score for ".concat(this.name) + " is ".concat(this.score))
+    System.out.println("Your score for ".concat(this.name) + " is " + this.score);
   }
 }
 
@@ -317,15 +317,17 @@ public class Game {
 
 The word `void`, which we have been seeing a lot of, is added in front of our method when we don't want the method to return anything. `return` is a keyword that can be used when we want to use the value that is formed inside a method. This can be easily demonstrated with an example.
 
+Here is a class `Five` that has a void method `timesFive`:
+
 ```
 public class Five {
   public static void main(String[] args) {
-    Five.isFive(5)
-    Five.isFive(6)
+    Five.timesFive(5);
+    Five.timesFive(6);
   }
 
-  public void timesFive(int num) {
-    System.out.println(num * 5)
+  public static void timesFive(int num) {
+    System.out.println(num * 5);
   }
 }
 
@@ -333,58 +335,75 @@ public class Five {
 >> 30
 ```
 
-We have a class Five with a main method that calls the timesFive method. At this point we print `num * 5` to the output. This is helpful for us as the viewer but what if we want to be able to use the result of this operation in our code? This is where we decide to return the value.
+If we want to use the result of this operation in our code we can refractor the `timesFive()` method to return the value.
 
 Void is a keyword we use when the method does not return anything. If the method does return something, in this case an `int`, we simply replace void with int:
 
 ```
 public class Five {
   public static void main(String[] args) {
-    Five.isFive(5)
-    Five.isFive(6)
+    Five.timesFive(5)
+    Five.timesFive(6)
   }
 
-  // use int instead of void
-  public int timesFive(int num) {
-    int product = num * 5;
-
-    // return the value
-    return product;
+  public static int timesFive(int num) { // change this line
+    return num * 5;
   }
 }
 ```
 
-Now we can access the return value in our main class by saving it to a variable.
+Then we can access the return value by saving the method calls to a variable.
 
 ```
 public class Five {
   public static void main(String[] args) {
-    int number = Five.isFive(5)
-    int secondNumber = Five.isFive(6)
+    int number = Five.timesFive(5)
+    int secondNumber = Five.timesFive(6)
 
-    // We can then use these variables however we see fit, e.g. passing them to other methods
-    System.out.println(Five.multiply(number, secondNumber))
+    System.out.println("number: " + number + " secondNumber: " + secondNumber);
   }
 
-  // use int instead of void
-  public int timesFive(int num) {
-    int product = num * 5;
-
-    // return the value
-    return product;
+  public static int timesFive(int num) {
+    return num * 5;
   }
 
-  public int multiply(number, secondNumber) {
-    return number * secondNumber
-  }
 }
 
+>> number: 25 secondNumber: 30
+```
+
+As you can see, we can now use the returned values in our main method. Lets add a multiply method which takes and multiplies two ints and pass in `number` and `secondNumber`:
+
+```
+public class Five {
+  public static void main(String[] args) {
+    int number = Five.timesFive(5)
+    int secondNumber = Five.timesFive(6)
+
+    System.out.println("number: " + number + " secondNumber: " + secondNumber);
+
+    System.out.println(Five.multiply(number, secondNumber)); // use the values in another method
+  }
+
+  public static int timesFive(int num) {
+    return num * 5;
+  }
+
+  public static int multiply(int number, int secondNumber) {
+      return number * secondNumber;
+  }
+
+}
+
+>> number: 25 secondNumber: 30
 >> 750
 ```
 
+As you develop more advanced programs, returning values will become the default behavious of your methods. It becomes much more obvious in an application with two or more classes as we will see next.
+
 ## Multiple classes - make more incremental?s
 
-We can instantiate one class from another class:
+We can instantiate one class from another class. Here is a public class called `Patient`. It has no `main` method but does have a constructor and multiple instance methods so we know we are going to make instrances of this class. There are three mthods to return the instance values and one to update the condition variable:
 
 ```
 public class Patient {
@@ -416,9 +435,94 @@ public class Patient {
 }
 ```
 
-Here we have a patient class that lets you instantiate a new patient with a name and age and then update their health. It also has three methods to retrieve this information.
+Now lets make a second class called `Hospital` and give it a `main` method and `addPatient()` method which takes a `Patient` argument:
 
-We can make an instance of this class from our Hospital class:
+```
+public class Hospital {
+
+  public static void main(String[] args) {
+
+  }
+
+  public static void addPatient(Patient patient) {
+
+  }
+
+}
+
+```
+
+Now we can create an instance of our `Patient` class inside the `Hosital` class:
+
+```
+public class Hospital {
+
+  public static void main(String[] args) {
+    // Create instances of the Patient class
+    Patient Rory = new Patient("Rory", 26);
+    Patient Gina = new Patient("Gina", 24);
+
+  }
+
+  public static void addPatient(Patient patient) {
+
+  }
+
+}
+```
+
+From our `Hospital.main` method we can also call the `Patient` instance methods like `updateCondition()`:
+
+```
+public class Hospital {
+
+  public static void main(String[] args) {
+    Patient Rory = new Patient("Rory", 26);
+    Patient Gina = new Patient("Gina", 24);
+
+    Rory.updateCondition("food poisoning");
+    Gina.updateCondition("Covid-19");
+  }
+
+  public static void addPatient(Patient patient) {
+
+  }
+
+}
+```
+
+Now we can give the Hospital its own functionality. Lets create an `ArrayList` called `patients` to store our `Patient` instances in. Use the `addPatient()` method to add them to the Arraylist:
+
+```
+import java.util.ArrayList;
+
+public class Hospital {
+  // Initialised with a type of Patient
+  static ArrayList<Patient> patients = new ArrayList<>();
+
+  public static void main(String[] args) {
+    Patient Rory = new Patient("Rory", 26);
+    Patient Gina = new Patient("Gina", 24);
+
+    Rory.updateCondition("food poisoning");
+    Gina.updateCondition("Covid-19");
+
+    // Call the addPatient method, passing in the Patient instances
+    Hospital.addPatient(Rory);
+    Hospital.addPatient(Gina);
+  }
+
+  public static void addPatient(Patient patient) {
+      patients.add(patient);
+  }
+
+}
+```
+
+Now that we have stored our data we want a way to retreieve it. Make a `listPatients()` method which loops through the `patients` ArrayList and prints of each Patient.You can call the the `get` methods of the Patient class within the loop.
+
+<details>
+<summary>Hospital class</summary>
 
 ```
 import java.util.ArrayList;
@@ -439,20 +543,18 @@ public class Hospital {
     Hospital.addPatient(Rory);
     Hospital.addPatient(Gina);
 
-    Hospital.listRecords();
+    Hospital.listPatients(); // Don't forget to call the method
   }
 
   public static void addPatient(Patient patient) {
-    String record = patient.getName() + " is " + patient.getAge() + " years old and has: " + patient.getCondition();
-
     // Add record made of data from Patients class to the patients array
     patients.add(record);
   }
 
-  public static void listRecords() {
+  public static void listPatients() {
     // loop through the patients array and print each item
-    for (String record : patients) {
-      System.out.println(record);
+    for (Patient patient : patients) {
+        System.out.println("Name: " + patient.getName() + " Age: " + patient.getAge() + " Condition: " + patient.getCondition());
     }
   }
 }
@@ -461,19 +563,11 @@ public class Hospital {
 >> Gina is 24 and has Covid-19
 ```
 
-The above two classes illustrates how one class with a main method can call methods from another class. This helps with separation of concerns and gives structure to the program.
+</details>
 
-**Note:** If Patient and Hospital are in the same package (e.g., the default package or another common package), you do not need an import statement.
+We have made a simple program using two classes which is a good example of Object Oriented Programming. The Patient instances are Objects and both classes have methods that manipulate their data.
 
-Otherwise, you would have to import the the Patient at the top of the Hospital script with an import statement:
-
-```
-import root.path.Patient;
-
-pubic class Hospital {
-  ...
-}
-```
+### Exercises
 
 ---
 

@@ -1,4 +1,14 @@
-# HashMap
+# Java advanced fundamentals - Data Structures 2
+
+In this section:
+
+-   HashMaps
+-   Iterating through HashMaps
+-   Lambdas and HashMaps
+
+Switch onto the `advanced-fundamentals-starter` branch
+
+## HashMap
 
 A HashMap is a data structure that stores data in key-value pairs. Each key is unique and maps to a specific value.
 
@@ -14,8 +24,6 @@ hashMap1 {
 
 A hashMap is used as an alternative to an Array under specific cases when you don't need your data to be ordered and more generally when it makes the code more readable and functional.
 
-## HashMap
-
 You can initialise a new HashMap like this:
 
 ```
@@ -28,13 +36,14 @@ Map<KeyDataType, ValueDataType> hashmapName = new HashMap<>();
 For example:
 
 ```
+import java.util.Map;
 import java.util.HashMap;
 
 public class Hashing {
   public static void main(String[] args) {
 
     // Create a HashMap
-    Map<String, Integer> movieRatings = new HashMap<>();
+    HashMap<String, Integer> movieRatings = new HashMap<>();
 
   }
 }
@@ -79,7 +88,7 @@ public class Hashing {
     movieRatings.put("Captain Marvel", 4);
 
     System.out.println(movieRatings.get("Iron Man"));
-    // >> Iron Man
+    // >> 9
 
     movieRatings.remove("Iron Man");
 
@@ -108,7 +117,7 @@ public class Hashing {
 
     ...
 
-    movieRatings.replace("Captian Marvel", 2) // replace 4 with 2
+    movieRatings.replace("Captian Marvel", 2); // replace 4 with 2
 
     System.out.println(movieRatings.get("Captain Marvel"));
     // >> 2
@@ -133,7 +142,7 @@ We can use `KeySet()` with a `For Each` loop to cycle through the keys and get t
 ```
 import java.util.HashMap;
 
-class Main {
+class PremierLeague {
     public static void main(String[] args) {
 
         // create a HashMap with a rank and a team as Integer and String
@@ -144,7 +153,7 @@ class Main {
 
         // iterate through keys with keySet()
         for (Integer rank : championsLeague.keySet()) {
-          System.out.print(rank + ": " + championsLeague.get(rank));
+          System.out.println(rank + ": " + championsLeague.get(rank));
         }
 
     }
@@ -158,10 +167,10 @@ class Main {
 Another option is to use the `java.util.Map.Entry` package for more advanced iteration syntax and improved performance:
 
 ```
-import java.util.Map.Entry; // import at the top
 import java.util.HashMap;
+import java.util.Map.Entry; // import at the top
 
-class Main {
+class PremierLeague {
     public static void main(String[] args) {
 
         // create a HashMap
@@ -186,34 +195,74 @@ class Main {
 
 ### Hashmap <String Object>
 
-We can use <String Object> to create a HashMap with values of different types:
+We can use <String Object> to create a HashMap with values of different types. Below we have a String value, Integer value and Array value:
 
 ```
-HashMap<String, Object> objectMap = new HashMap<>();
-objectMap.put("key1", "value1"); // String value
-objectMap.put("key2", 123); // Integer value
+import java.util.HashMap;
 
-String[] values = {"Integer", "String", "Boolean"};
-objectMap.put("key3", values) // You can also have an Array value
+public class HashMapExtra {
+    public static void main(String[] args) {
+    HashMap<String, Object> objectMap = new HashMap<>();
 
-// To retrieve this Array we can use get to save the Array to a varibale
-String[] retrievedValues = (String[]) objectMap.get("key3") // An then do what we want with our Array
+    objectMap.put("key1", "value1"); // String value
+    objectMap.put("key2", 123); // Integer value
 
-System.out.println(retrievedMap[0])
->> Integer
+    String[] values = {"Integer", "String", "Boolean"};
+    objectMap.put("key3", values); // You can also have an Array value
 
-// declare a new HashMap names placesMap and make it a value for objectMap
-HashMap<String, String> placesMap = new HashMap<>();
-placesMap.put("city", "New York");
-placesMap.put("zipcode", "10001");
+    // To retrieve this Array we can use get to save the Array to a variable
+    String[] retrievedArray = (String[]) objectMap.get("key3");
 
-objectMap.put("key4", placesMap)
+    System.out.println(retrievedArray[0]);
+    // >> Integer
 
-// We can retreive the inner HashMap from the outer HashMap in a similar way:
-HashMap<String, String> retrievedMap = (HashMap<String, String>) objectMap.get("key4");
+    // declare a new HashMap names placesMap and make it a value for objectMap
+    HashMap<String, String> placesMap = new HashMap<>();
+    placesMap.put("city", "New York");
+    placesMap.put("zipcode", "10001");
 
-System.out.println(retrievedMap.get(city))
->> New York
+    objectMap.put("key4", placesMap);
+
+    // We can retrieve the inner HashMap from the outer HashMap in a similar way:
+    HashMap<String, String> retrievedMap = (HashMap<String, String>) objectMap.get("key4");
+
+    System.out.println(retrievedMap.get("city"));
+    // >> New York
+
+    }
+
+}
+
+```
+
+We can even have a HashMap value of a HashMap:
+
+```
+import java.util.HashMap;
+
+public class HashMapExtra {
+    public static void main(String[] args) {
+    HashMap<String, Object> objectMap = new HashMap<>();
+
+    ...
+
+    // declare a new HashMap names placesMap and make it a value for objectMap
+    HashMap<String, String> placesMap = new HashMap<>();
+    placesMap.put("city", "New York");
+    placesMap.put("zipcode", "10001");
+
+    objectMap.put("key4", placesMap);
+
+    // We can retrieve the inner HashMap from the outer HashMap in a similar way:
+    HashMap<String, String> retrievedMap = (HashMap<String, String>) objectMap.get("key4");
+
+    System.out.println(retrievedMap.get("city"));
+    // >> New York
+
+    }
+
+}
+
 ```
 
 ### HashMap Runnable/Lambda
@@ -226,11 +275,11 @@ A Lambda is an anonymous method that can be passed as a parameter or stored in a
 Runnable runnable = () -> System.out.println("Hello, Lambda!");
 
 // Use the run() method to call it
-System.out.println(runnable.run())
+System.out.println(runnable.run());
 >> Hello, Lambda!
 ```
 
-We can use a built in method called forEach which takes a lambda and applies it for each element of an ArrayList:
+Another good example of lambda use is the built in method called `forEach()` which takes a lambda and applies it for each element of an ArrayList:
 
 ```
 ArrayList<String> names = new ArrayList("Alice", "Bob", "Charlie");
@@ -244,16 +293,22 @@ names.forEach(name -> System.out.println("Hello, " + name));
 And of course we can use lambdas in HashMaps:
 
 ```
-HashMap<String, Runnable> actions = new HashMap<>();
+import java.util.HashMap;
 
-actions.put("sayHello", () -> System.out.println("Hello, World!"));
-actions.put("sayGoodbye", () -> System.out.println("Goodbye, World!"));
+public class Lambda {
+    public static void main(String[] args) {
+        HashMap<String, Runnable> actions = new HashMap<>();
 
-actions.get("sayHello").run();
-actions.get("sayGoodbye").run();
+        actions.put("sayHello", () -> System.out.println("Hello, World!"));
+        actions.put("sayGoodbye", () -> System.out.println("Goodbye, World!"));
 
->> Hello, World!
->> Goodbye, World!
+        actions.get("sayHello").run();
+        actions.get("sayGoodbye").run();
+
+//      >> Hello, World!
+//      >> Goodbye, World!
+    }
+}
 ```
 
 This is all we're going to cover for HashMaps, in the next section we'll examine class methods.

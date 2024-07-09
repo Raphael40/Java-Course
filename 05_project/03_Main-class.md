@@ -4,9 +4,6 @@ Finally, we can do the `Main` class. This is where we will implement the built i
 
 Lets start by creating a new class called `Main` and adding in a `main` method:
 
-<details>
-<summary>Main class</summary>
-
 ```
 public class Main {
     public static void main(String[] args) {
@@ -15,16 +12,31 @@ public class Main {
 }
 ```
 
-</details>
+Then we want to instantiate our `MovieLibrary` class as an instance field and assign it inside the main method. DOn't forget to pass an `ArrayList` into it:
 
-<br>
+```
+public class Main {
+    private static MovieLibrary movieLibrary;
 
-The `main` method will call other methods in the class so we have to write those first. Lets create a method that instantiates a `Movie` and adds it to the `MovieLibrary` called `addMovie()`.
+    public static void main(String[] args) {
+
+        List<Movie> movies = new ArrayList<>();
+        movieLibrary = new MovieLibrary(movies);
+
+    }
+}
+```
+
+The `main` method will call other methods in the class so we have to write those first. Lets create two methods, one that takes user input and returns a `Movie` instance and another that takes a `Movie` instance and adds it to the `MovieLibrary`. We can call them `enterMovieDetails()` and `addToMovieLibrary()`:
 
 This method will be private, static and wont return anything:
 
 ```
-private static void addMovie() {
+private static Movie enterMovieDetails() {
+
+}
+
+private static void addMovie(Movie movie) {
 
 }
 ```
@@ -42,7 +54,7 @@ public class Main {
     }
 
 
-    private static void addMovie() {
+    private static Movie enterMovieDetails() {
       System.out.println("Enter the title of the movie:");
       String title = movieScanner.nextLine(); // Saves input to the title variable
     }
@@ -52,7 +64,7 @@ public class Main {
 Now we can do the same to get the director, rating, and year:
 
 ```
-private static void addMovie() {
+private static Movie enterMovieDetails() {
     System.out.println("Enter the title of the movie:");
     String title = movieScanner.nextLine();
     System.out.println("Enter the director of the movie:");
@@ -63,15 +75,19 @@ private static void addMovie() {
     System.out.println("Enter the year of the movie:");
     int year = movieScanner.nextInt();
     movieScanner.nextLine(); // consume newline character
+}
+
+private static void addMovie(Movie movie) {
+
 }
 ```
 
 Note that after we use `nextInt()` and `nextDouble()` we have to consume the newline character. Thats because they leave a string in the input that is automatically consumed by the next `nextLine()` call which can cause errors. Read more [here](https://www.freecodecamp.org/news/java-scanner-nextline-call-gets-skipped-solved/).
 
-Now we create a new instance of movie, passing in the values:
+Now we return a new instance of movie, passing in the values:
 
 ```
-private static void addMovie() {
+private static Movie enterMovieDetails() {
     System.out.println("Enter the title of the movie:");
     String title = movieScanner.nextLine();
     System.out.println("Enter the director of the movie:");
@@ -84,14 +100,18 @@ private static void addMovie() {
     movieScanner.nextLine();
 
 
-    Movie movie = new Movie(title, director, rating, year);
+    return new Movie(title, director, rating, year);
+}
+
+private static void addMovie(Movie movie) {
+
 }
 ```
 
-And finally we create a new instance of MovieLibrary and call its `addMovie()` method, passing in our instance of `Movie`:
+In our `addToMovieLibrary()` method we can call the `addMovie()` method of our `MovieLibrary` class:
 
 ```
-private static void addMovie() {
+private static Movie enterMovieDetails() {
     System.out.println("Enter the title of the movie:");
     String title = movieScanner.nextLine();
     System.out.println("Enter the director of the movie:");
@@ -103,44 +123,30 @@ private static void addMovie() {
     int year = movieScanner.nextInt();
     movieScanner.nextLine();
 
-    Movie movie = new Movie(title, director, rating, year);
-    MovieLibrary movieLibrary = new MovieLibrary(); // Movie library instance
-    movieLibrary.addMovie(movie); // Passing movie into movieLibrary addMovie() method
-    System.out.println("Movie Added") // Add this for confirmation
+
+    return new Movie(title, director, rating, year);
+}
+
+private static void addToMovieLibrary(Movie movie) {
+    movieLibrary.addMovie(movie);
+    System.out.println("Movie added.");
 }
 ```
 
-Since we want the `MovieLibrary` instance to be accessible by other methods of the class we can move it outside the `addMovie()` method, making it final, private, and static:
-
-```
-public class Main {
-    final private static MovieLibrary movieLibrary = new MovieLibrary(); // move our instance here
-    final private static Scanner movieScanner = new Scanner(System.in);
-
-    public static void main(String[] args) {}
-
-
-    private static void addMovie() {
-        ...
-
-        Movie movie = new Movie(title, director, rating, year);
-        movieLibrary.addMovie(movie);
-    }
-}
-```
-
-To see your method in action you can call `addMovie()` in your `main` method:
+To see your method in action you can call `enterMovieDetails()` and `addToMovieLibrary()` in your `main` method:
 
 ```
 public static void main(String[] args) {
-    addMovie();
+    Movie movie = enterMovieDetails();
+    addToMovieLibrary(movie);
 }
 ```
 
-If you run it and type movie details into the input when prompted you should see this:
+If it's successful you should be prompted so give an input. The console should look like this:
+
+`<<` represents inputs
 
 ```
-// << represents inputs
 
 >> Enter the title of the movie:
 << Inception
@@ -183,14 +189,15 @@ catch(Exception e) {
 }
 ```
 
-Depending what we want to do you we could either throw an error with your our message:
+Depending what we want to do you we could either use to the catch block to throw an error with your our message:
 
 ```
 import java.util.InputMismatchException;
 
 ...
-
-catch (Exception e) {
+try {
+    ...
+} catch (Exception e) {
     throw new InputMismatchException("Invalid input. Please enter the correct data types.");
 }
 ```
@@ -204,14 +211,14 @@ catch (Exception e) {
 }
 ```
 
-The difference is, in the first example a custom Exception will be thrown and we quit the program. In the second example we print our custom error message to the output but the program keeps running.
+The difference is, in the first example a custom Exception will be thrown and we quit the program. In the second example there is no Exception thrown and instead we print our custom message to the output. Thiskeeps the program keeps running.
 
-In our case it would be more suitable to use the latter and I will use that throughout the program. However, for this method I am going to throw an Exception just because I want to show you how to test for it later.
+In our case, it would be more suitable to use the latter so that the program keeps running and we can try entering a movie again.
 
 Incorporate a `try/catch` like this:
 
 ```
-private static void addMovie() {
+public static Movie enterMovieDetails() {
     try {
         System.out.println("Enter the title of the movie:");
         String title = movieScanner.nextLine();
@@ -224,21 +231,16 @@ private static void addMovie() {
         int year = movieScanner.nextInt();
         movieScanner.nextLine();
 
-        Movie movie = new Movie(title, director, rating, year);
-        movieLibrary.addMovie(movie);
-        System.out.println("Movie added.");
+        return new Movie(title, director, rating, year);
     } catch (Exception e) {
-        throw new InputMismatchException("Invalid input. Please enter the correct data types.");
-        // This will quit the program, which we can test later.
-
-        // movieScanner.nextLine();
-        // System.out.println("Invalid input. Please enter the correct data types.");
-        // This line is more suitable and will be used inn the other methods.
+        movieScanner.nextLine();
+        System.out.println("Invalid input. Please enter the correct data types.");
+        return null;
     }
 }
 ```
 
-Now, when I make the same error as above I get this output:
+Now, when we make the same error as above we get this output:
 
 ```
 >> Enter the title of the movie:
@@ -248,6 +250,19 @@ Now, when I make the same error as above I get this output:
 >> Enter the rating of the movie:
 << not a Double // This causes an error
 >> Invalid input. Please enter the correct data types. // From catch block
+```
+
+For the `addToMovieLibrary()` method we can also add a try/catch block:
+
+```
+public static void addToMovieLibrary(Movie movie) {
+    try {
+        movieLibrary.addMovie(movie);
+        System.out.println("Movie added.");
+    } catch (Exception e) {
+        System.out.println("Movie could not be added to the MovieLibrary.");
+    }
+}
 ```
 
 Lets move on to the next method; `rateMovie()`:
@@ -393,7 +408,9 @@ private static void listSingleMovie() {
 
         Movie movie = movieLibrary.getMovieByTitle(title);
         if (movie != null) {
+            System.out.print("\n");
             System.out.println(movie.getTitle() + " (" + movie.getYear() + ") - " + movie.getDirector() + " - " + movie.getRating());
+            System.out.print("\n");
         } else {
             System.out.println("Movie not found.");
         }
@@ -408,7 +425,8 @@ Try adding the method to `main`:
 
 ```
 public static void main(String[] args) {
-    addMovie();
+    Movie movie = enterMovieDetails();
+    addToMovieLibrary(movie);
     listSingleMovie();
 }
 ```
@@ -466,11 +484,13 @@ private static void listAllMovies() {
             return;
         }
 
+        System.out.print("\n");
         int count = 1;
         for (Movie movie : movieLibrary.getMovies()) {
             System.out.println(count + ": " + movie.getTitle() + " (" + movie.getYear() + ") - " + movie.getDirector() + " - " + movie.getRating());
             count++;
         }
+        System.out.print("\n");
     } catch (Exception e) {
         movieScanner.nextLine();
         System.out.println("Invalid input. Please enter the correct data types.");
@@ -486,9 +506,12 @@ Lets add it to `main` and see if it works:
 
 ```
 public static void main(String[] args) {
-    addMovie();
-    addMovie();
-    addMovie();
+    Movie movie = enterMovieDetails();
+    addToMovieLibrary(movie);
+    Movie movie2 = enterMovieDetails();
+    addToMovieLibrary(movie2);
+    Movie movie3 = enterMovieDetails();
+    addToMovieLibrary(movie3);
     listAllMovies();
 }
 ```
@@ -568,8 +591,10 @@ Lets try it in `main`:
 
 ```
 public static void main(String[] args) {
-    addMovie();
-    addMovie();
+    Movie movie = enterMovieDetails();
+    addToMovieLibrary(movie);
+    Movie movie2 = enterMovieDetails();
+    addToMovieLibrary(movie2);
     listAllMovies(); // Lists 2 movies
     removeMovie() // Input the title of an already added movie
     listAllMovies(); // Lists 1 movie
@@ -640,7 +665,7 @@ public static void main(String[] args) {
 }
 ```
 
-Now that our user has given their input we can use an `if` statement to call the methods:
+Now that our user has given their input we can use aa `switch` statement to call the methods:
 
 ```
 public static void main(String[] args) {
@@ -650,22 +675,29 @@ public static void main(String[] args) {
         printOptions()
         int choice = movieScanner.nextInt();
         movieScanner.nextLine(); // Don't forget to consume the newline!
-        if (choice == 1) {
-            addMovie();
-        } else if (choice == 2) {
-            rateMovie();
-        } else if (choice == 3) {
-            listSingleMovie();
-        } else if (choice == 4) {
-            listAllMovies();
-        } else if (choice == 5) {
-            removeMovie();
+        switch (choice) {
+            case 1:
+                Movie movie = enterMovieDetails();
+                addToMovieLibrary(movie);
+                break;
+            case 2:
+                rateMovie();
+                break;
+            case 3:
+                listSingleMovie();
+                break;
+            case 4:
+                listAllMovies();
+                break;
+            case 5:
+                removeMovie();
+                break;
         }
     }
 }
 ```
 
-And finally we can add in choice 6 which exits the program by changing the `running` variable to false:
+And finally we can add in choice 6 which exits the program by changing the `running` variable to false as well as a default option:
 
 ```
 public static void main(String[] args) {
@@ -675,21 +707,30 @@ public static void main(String[] args) {
         printOptions();
         int choice = movieScanner.nextInt();
         movieScanner.nextLine();
-        if (choice == 1) {
-            addMovie();
-        } else if (choice == 2) {
-            rateMovie();
-        } else if (choice == 3) {
-            listSingleMovie();
-        } else if (choice == 4) {
-            listAllMovies();
-        } else if (choice == 5) {
-            removeMovie();
-        } else if (choice == 6) {
-            System.out.println("Exiting...");
-            running = false;
-        } else {
-            System.out.println("Invalid choice."); // also check for invalid
+        switch (choice) {
+            case 1:
+                Movie movie = enterMovieDetails();
+                addToMovieLibrary(movie);
+                break;
+            case 2:
+                rateMovie();
+                break;
+            case 3:
+                listSingleMovie();
+                break;
+            case 4:
+                listAllMovies();
+                break;
+            case 5:
+                removeMovie();
+                break;
+            case 6:
+                System.out.println("Exiting...");
+                running = false;
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                break;
         }
     }
 }
