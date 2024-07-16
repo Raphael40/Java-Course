@@ -1,4 +1,4 @@
-# Java fundamentals - Hello World, classes
+# Classes
 
 In this section:
 

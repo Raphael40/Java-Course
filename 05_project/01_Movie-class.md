@@ -1,4 +1,4 @@
-# Movie Rating Command Line App
+# Movie Class
 
 In this section we are going to write the first class of a mini project to which is a `Movie-Rating-App`. A completed repo is available, however there is no starter repo since we will be starting from scratch.
 

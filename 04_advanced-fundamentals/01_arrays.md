@@ -1,4 +1,4 @@
-# Java advanced fundamentals - Data Structures
+# Data Sctructures - Array, ArrayList
 
 In this section:
 

@@ -1,12 +1,10 @@
-# Java advanced fundamentals - Data Structures 2
+# Data Structures - HashMap
 
 In this section:
 
 -   HashMaps
 -   Iterating through HashMaps
 -   Lambdas and HashMaps
-
-Switch onto the `advanced-fundamentals-starter` branch
 
 ## HashMap
 

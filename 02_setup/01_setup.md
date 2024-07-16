@@ -68,4 +68,4 @@ https://whichjdk.com/
 
 ---
 
-[back](../README.md) <span style="float: right;">[next](../03_java-fundamentals/01_classes.md)</span>
+[back](../README.md) <span style="float: right;">[next](../03_java-fundamentals/README.md)</span>

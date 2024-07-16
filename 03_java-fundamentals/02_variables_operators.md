@@ -1,4 +1,4 @@
-# Java fundamentals - variables & operators
+# Variables & Operators
 
 In this section:
 

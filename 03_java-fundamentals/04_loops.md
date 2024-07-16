@@ -124,4 +124,4 @@ Congratualtions you have finished the basics. In the next section we cover some 
 
 ---
 
-[back](../README.md) <span style="float: right;">[next](../04_advanced-fundamentals/01_arrays.md)</span>
+[back](../README.md) <span style="float: right;">[next](../04_advanced-fundamentals/README.md)</span>

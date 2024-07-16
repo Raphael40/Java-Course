@@ -1,6 +1,10 @@
-# Advanced fundamentals
+# Class Methods - OOP
 
-In this section we'll learn about the difference between static and instance methods followed by the void and return keywords.
+In this section:
+
+-   Static and instance methods
+-   The return keyword
+-   Using multiple classes
 
 ## Class Methods
 

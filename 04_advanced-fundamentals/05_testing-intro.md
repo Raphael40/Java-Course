@@ -1,6 +1,10 @@
-# Testing intro with JUnit
+# Testing Intro
 
-In this section we're going to look at unit testing with JUnit, a testing framework for Java.
+In this section:
+
+-   What is a test?
+-   JUnit testing framework
+-   Unit and Integration tests
 
 ## What is a test?
 
@@ -812,4 +816,4 @@ Resources:
 Prepare IntelliJ for testing: https://www.jetbrains.com/help/idea/testing.html
 Make JUnit test in IntelliJ: https://www.jetbrains.com/help/idea/junit.html#intellij
 
-[back](../README.md) <span style="float: right;">[next](../05_project/01_Movie-class.md)</span>
+[back](../README.md) <span style="float: right;">[next](../05_project/README.md)</span>
