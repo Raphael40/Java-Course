@@ -4,8 +4,8 @@ Learn Java and Spring Boot by taking this free interactive course. Each module h
 
 ## Pre-requisites
 
--Basic understanding of GitHub and .git
--Basic understanding of the command-line interface
+-   Basic understanding of GitHub and .git
+-   Basic understanding of the command-line interface
 
 ## Curriculum
 

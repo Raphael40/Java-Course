@@ -235,11 +235,9 @@ private int year;
 
 ### MovieTest class
 
-Now we can test our class. This time when we create our `MovieTest` class from the actions dropdown we can tick the items under `Generate test methods for for`:
+Now we can test our class. Create a `MovieTest` file:
 
 ![MovieTest](images/newTest.png)
-
-This will give us some starter code:
 
 ```
 package main.java;

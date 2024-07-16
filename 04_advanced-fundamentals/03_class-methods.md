@@ -567,14 +567,8 @@ public class Hospital {
 
 We have made a simple program using two classes which is a good example of Object Oriented Programming. The Patient instances are Objects and both classes have methods that manipulate their data.
 
-### Exercises
-
 ---
 
-In the next section we're going to have our first look at testing.
+In the next section we're going to have our first look at interfaces.
 
-[next](../04_advanced-fundamentals/02_testing-intro.md)
-
----
-
-[back](../README.md) <span style="float: right;">[next](04_testing-intro.md)</span>
+[back](../README.md) <span style="float: right;">[next](04_interfaces.md)</span>

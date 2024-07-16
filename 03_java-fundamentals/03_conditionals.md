@@ -93,6 +93,57 @@ if (cat == "Caspian") {
 
 In this scenario we have three different outcomes. If the cat is "Caspian" we print "That's my cat, Caspian!", if the cat is "Hendrix" we print "Ah it's Hendrix" and if the cat is neither "Caspian" nor "Hendrix" we print "I do not know this cat". Feel free to change the value of `cat` and see what happens.
 
+### Switch
+
+There is one more type of conditional called a `switch` statement. The syntax is (in my opinion) a little unusual but there are scanarios where it is more optimal and readble than an `if else` statement.
+
+It is initialised with the `switch` keyword which takes an expression. It then has multiple cases that execute if the expression is equal to the value for each case. Then use the `break` keyword to exit the statement. We also have a `default` case which is similar to an `else` as it executes if none of the cases match the expression:
+
+```
+switch(expression) {
+  case x:
+    // code block
+    break;
+  case y:
+    // code block
+    break;
+  default:
+    // code block
+}
+```
+
+The switch is a good choice if you have a fixed number of options. Here is a basic example:
+
+```
+String day = "Friday";
+
+switch(day) {
+  case "Monday":
+    System.out.println("The day today is" + day)
+    break;
+  case "Tuesday":
+    System.out.println("The day today is" + day)
+    break;
+  case "Wednesday":
+    System.out.println("The day today is" + day)
+    break;
+  case "Thursday":
+    System.out.println("The day today is" + day)
+    break;
+  case "Friday":
+    System.out.println("The day today is" + day)
+    break;
+  case "Saturday":
+    System.out.println("The day today is" + day)
+    break;
+  case "Sunday":
+    System.out.println("The day today is" + day)
+    break;
+  default:
+    System.out.println("invalid day)
+}
+```
+
 ## Exercises
 
 Check if a number is positive or negative
