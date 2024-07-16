@@ -1,12 +1,10 @@
 # Data Sctructures - Array, ArrayList
 
-In this section:
+In this lesson:
 
 -   Arrays
 -   ArrayLists
 -   Iterating through Arrays and ArrayLists
-
-Switch onto the `advanced-fundamentals-starter` branch
 
 ## Arrays
 

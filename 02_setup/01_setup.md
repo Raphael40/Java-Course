@@ -1,6 +1,6 @@
 # Setup your machine
 
-In this section:
+In this lesson:
 
 -   What is a JDK?
 -   How to install a JDK

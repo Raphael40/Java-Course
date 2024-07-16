@@ -1,6 +1,6 @@
 # Interfaces
 
-In this section:
+In this lesson:
 
 -   What are Interfaces?
 -   Creating Interfaces

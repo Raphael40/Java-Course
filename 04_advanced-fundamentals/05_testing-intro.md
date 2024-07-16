@@ -1,6 +1,6 @@
 # Testing Intro
 
-In this section:
+In this lesson:
 
 -   What is a test?
 -   JUnit testing framework

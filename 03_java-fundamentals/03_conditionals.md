@@ -1,6 +1,6 @@
 # Conditionals
 
-In this section:
+In this lesson:
 
 -   If statements
 -   If else statements

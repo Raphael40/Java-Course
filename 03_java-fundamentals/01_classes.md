@@ -1,6 +1,6 @@
 # Classes
 
-In this section:
+In this lesson:
 
 -   Run our first class
 -   Create our first class

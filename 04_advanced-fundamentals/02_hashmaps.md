@@ -1,6 +1,6 @@
 # Data Structures - HashMap
 
-In this section:
+In this lesson:
 
 -   HashMaps
 -   Iterating through HashMaps

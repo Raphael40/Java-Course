@@ -1,6 +1,6 @@
 # Variables & Operators
 
-In this section:
+In this lesson:
 
 -   Data types
 -   Assigning data values to Variables

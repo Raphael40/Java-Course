@@ -1,6 +1,6 @@
 # Class Methods - OOP
 
-In this section:
+In this lesson:
 
 -   Static and instance methods
 -   The return keyword

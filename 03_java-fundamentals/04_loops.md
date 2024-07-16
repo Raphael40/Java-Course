@@ -1,6 +1,6 @@
 ## Loops
 
-In this section:
+In this lesson:
 
 -   For loop
 -   While loop

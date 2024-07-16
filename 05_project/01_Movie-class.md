@@ -1,6 +1,6 @@
 # Movie Class
 
-In this section we are going to write the first class of a mini project to which is a `Movie-Rating-App`. A completed repo is available, however there is no starter repo since we will be starting from scratch.
+In this lesson we are going to write the first class of a mini project to which is a `Movie-Rating-App`. A completed repo is available, however there is no starter repo since we will be starting from scratch.
 
 Before we start we are going to quickly look at one more class from the `java.util` package called `Scanner` which is integral to our prject.
 
