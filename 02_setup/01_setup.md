@@ -67,7 +67,7 @@ https://github.com/Raphael40/Java-Course-Support-Repo
 
 Once cloned, open the support repo in IntelliJ.
 
-At this point you will see a README.md file and a `.idea` directory. The README contains contains some info on the repository. The `.idea` is created by IntelliJ to store settings, version controls, and metadata about your project such as the JDK you are using and your project structure.
+At this point you should see a README.md file which contains some info on the branches in the repository.
 
 In the next section we are going to run our first program and look at Java classes.
 

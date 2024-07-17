@@ -12,9 +12,9 @@ Switch onto the `java-fundamentals-starter` branch as shown in the image below.
 
 ![checkout](images/Java-checkout.JPG)
 
-Alternatively you can open a terminal in Intellij by going to the Menu then _View >> Tool Windows >> Terminal_ and running this command: `git switch java-fundamentals`.
+Alternatively you can open a terminal in Intellij by going to the Menu then _View >> Tool Windows >> Terminal_ and running this command: `git switch java-fundamentals`. You may be prompted to setup your jdk which you can do from the project structure window.
 
-Some new files will appear. One of them is the blue `src` folder where we store our Java code. IntelliJ will not run any files that are outside whatever folder is marked blue folder.
+Some new files will appear. One of them is the blue `src` folder where we store our Java code. IntelliJ will not run any files that are outside whatever folder is marked blue folder. There should also be a `.idea` directory, created by IntelliJ to store settings, version controls, and metadata about your project such as the JDK you are using and your project structure.
 
 Go to the `src/main/java` directory and open the `HelloWorld` file inside. You may be prompted to setup your JDK, when you have, a green arrow will be visible on the toolbar at the top of the interface and in the gutter to the left hand side of the code.
 
