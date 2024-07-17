@@ -2,10 +2,7 @@
 
 Learn Java and Spring Boot by taking this free interactive course. Each module has a supporting repo that must be forked and cloned.
 
-## Pre-requisites
-
--   Basic understanding of GitHub and .git
--   Basic understanding of the command-line interface
+[Support Repo](https://github.com/Raphael40/Java-Course-Support-Repo)
 
 ## Curriculum
 

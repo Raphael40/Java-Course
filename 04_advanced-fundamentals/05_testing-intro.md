@@ -6,6 +6,8 @@ In this lesson:
 -   JUnit testing framework
 -   Unit and Integration tests
 
+For this lesson you will need to switch from the `advanced-fundamentals-starter` branch to the `java-testing-intro-starter` branch.
+
 ## What is a test?
 
 A test is a program designed to verify that another program behaves as expected. There are three types of tests, unit, integration and end to end. A unit test is designed to verify smaller units of code such as methods. We will visit the other two later. If the code works as expected the test should pass, otherwise the test should fail. This is helpful for identifying bugs in your code.
@@ -127,10 +129,11 @@ If we run the MyCalculatorTest now we get:
 If we can manually write tests like above then why would we need a testing framework? There are many reasons including:
 
 1. Extended syntax to account for more complex code
-2. Capability to run multiple tests in one command
-3. Detailed test reports and logs to provide insights
-4. Test coverage info (how much of your code is covered by tests)
-5. Testing frameworks often integrate with various development tools like web development frameworks
+2. Faster test development
+3. Capability to run multiple tests in one command
+4. Detailed test reports and logs to provide insights
+5. Test coverage info (how much of your code is covered by tests)
+6. Integration with various development tools like web development frameworks
 
 ### Install JUnit
 
@@ -377,21 +380,6 @@ public class Coffee {
     }
 
     public void displayDetails() {
-
-    }
-
-}
-
-```
-
-Then we want to
-
-```
-public class Coffee {
-
-    ...
-
-    public String displayDetails() {
         return "Coffee Type: " + type + "Price: £" + price;
     }
 
@@ -399,7 +387,7 @@ public class Coffee {
 
 ```
 
-Create a new test class `CoffeeTest` (alt Enter > Create Test):
+Then we want to create a new test class `CoffeeTest` (alt Enter > Create Test):
 
 ```
 package main.java;

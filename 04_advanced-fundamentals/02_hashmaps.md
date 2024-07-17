@@ -37,7 +37,7 @@ For example:
 import java.util.Map;
 import java.util.HashMap;
 
-public class Hashing {
+public class LearnHashMap {
   public static void main(String[] args) {
 
     // Create a HashMap
@@ -53,7 +53,7 @@ We can then insert key: value pairs using `put()`:
 ```
 import java.util.HashMap;
 
-public class Hashing {
+public class LearnHashMap {
   public static void main(String[] args) {
 
     // Create a HashMap
@@ -74,7 +74,7 @@ We can use `get()` to get a value by key and `remove()` to remove to remove both
 ```
 import java.util.HashMap;
 
-public class Hashing {
+public class LearnHashMap {
   public static void main(String[] args) {
 
     // Create a HashMap
@@ -102,7 +102,7 @@ we can use `replace()` to change the value of a key:
 ```
 import java.util.HashMap;
 
-public class Hashing {
+public class LearnHashMap {
   public static void main(String[] args) {
 
     // Create a HashMap

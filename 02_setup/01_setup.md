@@ -60,6 +60,15 @@ This course uses InttelliJ because configuration is significantly easier but it'
 
 At this point you should have a JDK installed (17 or 21) and IntelliJ.
 
+To follow along with the course you will need to clone this repo:
+https://github.com/Raphael40/Java-Course-Support-Repo
+
+[How to clone a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?platform=windows)
+
+Once cloned, open the support repo in IntelliJ.
+
+At this point you will see a README.md file and a `.idea` directory. The README contains contains some info on the repository. The `.idea` is created by IntelliJ to store settings, version controls, and metadata about your project such as the JDK you are using and your project structure.
+
 In the next section we are going to run our first program and look at Java classes.
 
 ### References
