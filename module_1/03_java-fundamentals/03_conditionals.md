@@ -8,7 +8,7 @@ In this lesson:
 
 ### If statements
 
-One of the best places to see these operators in action is inside an `if` statement. The concept of the `if` statement is simple, we are writing a program that will execute a specific code block **if** a specified condition evaluates to true.
+The concept of the `if` statement is simple, we are writing a program that will execute a specific code block **if** a specified condition evaluates to true.
 
 The syntax is as follows:
 
